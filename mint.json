@@ -27,26 +27,12 @@
   },
   "tabs": [
     {
-      "name": "API Reference",
+      "name": "商户 API",
       "url": "api-reference"
     }
   ],
   "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
-    }
+
   ],
   "navigation": [
     {
@@ -75,11 +61,19 @@
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "请求",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
+        "api-reference/endpoint/generate_addr",
+        "api-reference/endpoint/withdraw",
         "api-reference/endpoint/delete"
+      ]
+    },
+    {
+      "group": "回调",
+      "pages": [
+        "api-reference/webhook/deposit",
+        "api-reference/webhook/withdraw",
+  
       ]
     }
   ],
