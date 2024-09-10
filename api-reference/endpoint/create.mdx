@@ -3,5 +3,42 @@ title: 'Create Plant'
 openapi: 'POST /plants'
 ---
 
-## 北景鑫城
-## 这个是API文档啊
+# 生成地址
+生成某条链上的充值地址
+
+>POST  /v1/account/address/create
+
+
+### 请求参数
+|  参数   | 数据类型  | 是否必须 | 描述 |
+|  ----   | ----    | ----    | ---- |
+| chainName  | Integer | true | 链名 |
+| timestamp  | Long | true | unix时间戳(毫秒) |
+| addressNum  | Integer | Flase | 需生成的地址数量,小于等于5,默认为1 |
+| alias  | String | Flase | 设置地址的别名,可作为地址的标识,更好的辨认 |
+| callbackUrl  | String | Flase | 回调地址，该地址的收款信息会优先以此回调地址通知您 |
+
+### 响应参数
+|  参数   | 数据类型  | 是否必须 | 描述 |
+|  ----   | ----    | ----    | ---- |
+| address  | string | true | 地址 |
+
+
+### 响应示例
+
+```json
+{
+    "code": 200,
+    "msg": "success",
+    "timestamp": "1725620148293",
+    "data": {
+        "address": [
+            "TTxcUtirXHxAhUqxnZxTNy3qKonq7E5HAH",
+            "TFgraYN8Bg6s1iAyJNdR7b1czKuoa2pTgT",
+            "TMMbLtoJoRPcB4f6huP3RuMFx19VBeyWm7",
+            "TP3dTvZhjEbB2S3uzoKXPzyGUhp8PHSErH",
+            "TQFRssKP7ELtkAH39KyscptDj92do4jxdn"
+        ]
+    }
+}
+```
