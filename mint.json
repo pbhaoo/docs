@@ -31,6 +31,10 @@
     "url": "https://beta.basswallet.io/"
   },
   "tabs": [
+        {
+      "name": "用户指南",
+      "url": "user-guide"
+    },
     {
       "name": "商户API",
       "url": "api-reference"
@@ -50,31 +54,24 @@
 
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "快速开始",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "user-guide/get-start/introduction",
+        "user-guide/get-start/quickstart",
+        "user-guide/get-start/development"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "编辑说明",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "user-guide/essentials/markdown",
+        "user-guide/essentials/code",
+        "user-guide/essentials/images",
+        "user-guide/essentials/settings",
+        "user-guide/essentials/navigation",
+        "user-guide/essentials/reusable-snippets"
       ]
     },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
-      ]
-    },
-
         {
       "group": "接入说明",
       "pages": [
@@ -88,7 +85,6 @@
         "api-reference/info/error-code"
       ]
     },
-
 
     {
       "group": "请求",
