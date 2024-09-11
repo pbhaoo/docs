@@ -63,7 +63,7 @@
     {
       "group": "请求",
       "pages": [
-        "api-reference/endpoint/generate_addr",
+        "api-reference/endpoint/generate-addr",
         "api-reference/endpoint/withdraw",
         "api-reference/endpoint/delete"
       ]
