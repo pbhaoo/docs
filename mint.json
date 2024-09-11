@@ -56,7 +56,9 @@
        {
       "group": "概况",
       "pages": [
-        "user-guide/overview/introduction"
+        "user-guide/overview/introduction",
+        "user-guide/overview/user-scenario",
+        "user-guide/overview/how-to-user"
       ]
     },
         {
