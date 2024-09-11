@@ -65,7 +65,7 @@
       "pages": [
         "api-reference/endpoint/generate-addr",
         "api-reference/endpoint/withdraw",
-        "api-reference/endpoint/delete"
+        "api-reference/endpoint/address-legal"
       ]
     },
     {
