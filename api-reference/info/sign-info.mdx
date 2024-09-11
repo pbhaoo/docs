@@ -1,4 +1,47 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: '签名认证'
+description: ''
 ---
+
+
+- 目前除了公共接口，所有其它接口都需要进行签名验证，以保证请求数据不会被恶意篡改。
+- 所有签名接口都需要传递 `timestamp` 参数，其值应当是请求发送时刻的 UNIX 时间戳（毫秒）。服务器收到请求时会判断请求中的时间戳，如果是 5000 毫秒之前发出的，则请求会被认为无效。
+- 除了需要传递接口本身需要的参数之外，还需要在 query string 或 request body 中传递 `signature`，即签名参数。
+
+## POST /v1/account/withdraw 签名请求示例
+
+### 请求参数
+
+| 参数名称   | 取值                                        |
+|------------|---------------------------------------------|
+| tokenName  | USDT                                        |
+| amount     | 500                                         |
+| chainName  | Ethereum                                    |
+| toAddress  | 0x9C903Cc6233ea0E9275452C13efe967a04EBe58b |
+| timestamp  | 1724985575933                               |
+
+### 签名生成的步骤
+
+1. **构建 Payload**
+   将参数列表排列成一个字符串，用 `&` 分隔每个参数。对于上述参数，签名 payload 如下所示：  
+
+
+``` 
+tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933
+```
+
+
+2. **使用 HMAC SHA-256 算法对 Payload 进行签名**
+
+3. **将输出的签名编码为 16 进制格式**
+
+4. **将输出的签名放到请求头中 `Signature`**
+
+### 参数通过 request body 发送的 cURL 示例
+
+```bash
+$ curl -H "X-BS-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" \
+    -H "Signature: <signature>" \
+    -X POST 'https://api.baaswallet.io/baaswallet/api/v1/account/withdraw' \
+    -d 'tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933'
+```

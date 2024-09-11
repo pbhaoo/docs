@@ -1,4 +1,27 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: '参数枚举'
+description: ''
 ---
+
+
+### 订单状态（status）
+
+| 值               | 说明                                   |
+|------------------|----------------------------------------|
+| WaitingReview    | 待审核                                 |
+| ReviewRejected   | 审核驳回                               |
+| ReviewPassed     | 审核通过                               |
+| WaitingProcessing| 排队等待中                             |
+| Processing       | 正在处理该笔订单                       |
+| WaitingPackaging | 成功提交到链上，等待矿工打包           |
+| WaitingConfirmation| 打包成功，等待区块数的确认          |
+| Success          | 区块数确认成功，订单完成               |
+| Fail             | 区块数确认失败                         |
+| Canceled         | 订单被取消                             |
+
+### 回调类型（WebhookType）
+
+| 值       | 说明                       |
+|----------|----------------------------|
+| Deposit  | 充值订单的回调             |
+| Withdraw | 提现订单的回调             |

@@ -1,4 +1,24 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: '错误代码'
+description: ''
 ---
+
+
+| 状态码 | 解释                   | 错误说明                           |
+|--------|------------------------|------------------------------------|
+| 400    | PARAM_ERROR            | 参数错误                           |
+| 400    | ADDRESS_UNAVAILABLE    | 钱包地址不可用                     |
+| 400    | TIME_OUT               | 时间戳过旧                         |
+| 400    | CALLBACK_URL_ERROR     | 回调地址错误                       |
+| 400    | INSIDE_ADDRESS         | 不可将转账地址设置为内部地址       |
+| 400    | AMOUNT_PRECISION_TOO_SMALL | 金额的小数位长度不能大于币种精度 |
+| 401    | UNAUTHORIZED_ACCESS    | AK不存在                           |
+| 401    | SIGN_ERROR             | 签名错误                           |
+| 401    | IP_NOT_IN_WHITELIST    | IP地址不在白名单中                 |
+| 403    | NO_AUTH                | APIkey无权限                       |
+| 403    | BUSINESS_ID_EXISTENCE  | businessId重复                     |
+| 403    | TRADE_ERROR            | 交易错误                           |
+| 403    | NOT_SUFFICIENT_FUNDS   | 余额不足                           |
+| 429    | FREQUENCY_LIMITED      | 频率超限                           |
+| 450    | NON_WITHDRAWAL         | 无法提现                           |
+| 500    | SYSTEM_ERROR           | 系统异常，请稍后重试               |

@@ -1,4 +1,23 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: '请求说明'
+description: ''
 ---
+
+### 请求格式
+
+所有的 API 请求都是 RESTful，目前仅支持两种方法：GET 和 POST。
+
+*  **GET 请求**：所有的参数必须都在路径参数里。
+* **POST 请求**：所有参数通过 request body 以 payload 发送。
+
+### 接入 URL
+
+- **生产环境**:`https://api.baaswallet.io/baaswallet/api/`
+- **测试环境**:`https://api-beta.baaswallet.io/baaswallet/api/`
+
+### 接口鉴权
+
+- 所有的接口都需要 API-Key，在 HTTP 请求头中以 `X-BS-APIKEY` 字段传递。
+- 每个 API-Key 可以配置为只拥有访问一些接口的权限，例如配置为仅拥有可用于发送交易的权限。
+- 你可以在商户后台对可访问权限进行配置，默认所有接口不能访问。
+- 请求接口前，请先确保 API-Key 有对应的访问权限。

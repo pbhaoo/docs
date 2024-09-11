@@ -1,4 +1,30 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: '响应说明'
+description: ''
 ---
+
+
+所有 API 接口的返回格式均为以下结构：
+
+- **最上层有三个字段**：`code`，`message` 和 `data`。前两个字段表示返回码和错误消息，实际的业务数据在 `data` 中。
+
+## 响应参数
+
+| 参数名称 | 数据类型 | 描述                               |
+|----------|----------|------------------------------------|
+| code     | int      | API 返回接口码                      |
+| msg      | string   | 错误消息（如果有）                  |
+| data     | object   | 接口返回数据主体                    |
+| timestamp| string   | 请求完成时的时间戳                 |
+
+### 响应示例
+
+```json
+{
+    "code": 200,
+    "message": "",
+    "timestamp": "1724125848133",
+    "data": {
+        // per API response data in nested JSON object
+    }
+}
