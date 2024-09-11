@@ -22,7 +22,7 @@
   
   "topbarLinks": [
     {
-      "name": "Support",
+      "name": "客户支持",
       "url": "https://client.krosuite.com/?source=544948018013671424"
     }
   ],
@@ -37,12 +37,13 @@
     },
     {
       "name": "常见问题",
-      "url": "api-reference"
+      "url": "questions"
     }
   ],
   "anchors": [
 
   ],
+
   "navigation": [
     {
       "group": "Get Started",
@@ -105,6 +106,7 @@
       ]
     }
   ],
+
   "footerSocials": {
     "x": "https://x.com/mintlify",
     "github": "https://github.com/mintlify",
