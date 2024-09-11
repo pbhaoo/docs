@@ -108,6 +108,7 @@
         {
       "group": "常见问题",
       "pages": [
+        "questions/questions/webhook",
         "questions/questions/webhook"
       ]
     }
