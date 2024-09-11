@@ -1,0 +1,86 @@
+---
+title: '获取币种信息'
+description: '获取平台支持的币种信息,币种相关信息可在其他接口进行使用.'
+openapi: 'GET /'
+---
+
+### 接口地址  
+**GET** `/v1/common/tokens`
+
+### 请求参数
+
+| 参数      | 数据类型 | 是否必须 | 描述         |
+|-----------|----------|----------|--------------|
+| tokenName | String   | False    | 币种名，默认返回所有 |
+
+### 响应参数
+
+| 参数               | 数据类型 | 是否必须 | 描述                                                          |
+|--------------------|----------|----------|---------------------------------------------------------------|
+| tokenName          | String   | True     | 币种名                                                        |
+| fullName           | String   | True     | 全称                                                          |
+| \<chainList\>      | Object   | True     | 该币种支持的提现/充值的链列表，同一种币有可能在多个链中发行，但本质上属于同一资产 |
+| chainId            | String   | True     | 链ID，唯一                                                    |
+| chainName          | String   | True     | 支持发行的链名，唯一                                          |
+| tokenId            | String   | True     | 此链上该币种的ID，唯一                                        |
+| contractId         | String   | False    | 币种的合约ID，智能合约代币才有此值                            |
+| tokenType          | String   | True     | 币种类型, 当值为“Base"时, 代表是该链的主币                    |
+| decimals           | Int      | True     | 币种的精度                                                    |
+| displayDecimal     | Int      | True     | 该币种保留的最长小数位，提现数量受此值限制                    |
+| blockConfirmNum    | Int      | True     | 需要的区块确认数。安全上账需要的区块确认数。                    |
+| minDepositAmount   | String   | True     | 充值上账最小金额，小于此金额的充值将不会上账                   |
+| minWithdrawAmount  | String   | True     | 链上提币的最小金额，小于此金额拒绝提币                        |
+| fee                | String   | True     | 提币的网络手续费，此值并非固定不变                            |
+| depositEnable      | Bool     | True     | 该币种是否可以充值                                            |
+| sda                | String   | False    | 暂停充值公告信息，如果有                                      |
+| suspendDepositDesc | String   | False    | 暂停充值描述信息，如果有                                      |
+| withdrawEnable     | Bool     | True     | 币种是否可以提现                                              |
+| swa                | String   | False    | 暂停提现公告信息，如果有                                      |
+| suspendWithdrawDesc| String   | False    | 暂停提现描述信息，如果有                                      |
+
+### 响应示例
+
+```json
+{
+    "code": 200,
+    "msg": "success",
+    "timestamp": "1725619438648",
+    "data": [
+        {
+            "tokenName": "USDT",
+            "fullName": "Tether USD",
+            "chainList": [
+                {
+                    "chainId": 102,
+                    "chainName": "Ethereum",
+                    "tokenId": 102003,
+                    "contractId": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+                    "tokenType": "ERC-20",
+                    "decimals": 6,
+                    "displayDecimal": 2,
+                    "blockConfirmNum": 64,
+                    "minDepositAmount": "0.01",
+                    "minWithdrawAmount": "0.01",
+                    "fee": "0.11",
+                    "depositEnable": true,
+                    "withdrawEnable": true
+                },
+                {
+                    "chainId": 103,
+                    "chainName": "Tron",
+                    "tokenId": 103002,
+                    "contractId": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+                    "tokenType": "TRC-20",
+                    "decimals": 6,
+                    "displayDecimal": 2,
+                    "blockConfirmNum": 20,
+                    "minDepositAmount": "0.01",
+                    "minWithdrawAmount": "0.12",
+                    "fee": "0.01",
+                    "depositEnable": true,
+                    "withdrawEnable": true
+                }
+            ]
+        }
+    ]
+}
