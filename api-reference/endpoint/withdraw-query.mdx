@@ -1,0 +1,62 @@
+---
+title: '提币查询'
+description: '查询提币订单信息'
+openapi: 'GET /'
+---
+
+### 接口地址  
+**GET** `/v1/account/withdraw/query`
+
+### 请求参数
+
+| 参数        | 数据类型 | 是否必须 | 描述                                     |
+|-------------|----------|----------|--------------------------------------------|
+| id          | String   | False    | 平台返回的订单id                          |
+| businessId  | String   | False    | 商户自定义的业务id                        |
+| timestamp   | Long     | True     | unix时间戳(毫秒)                          |
+
+注意：`id`或`businessId`只能传其中一个。
+
+### 响应参数
+
+| 参数          | 数据类型 | 是否必须 | 描述                      |
+|---------------|----------|----------|---------------------------|
+| id            | String   | True     | 订单ID                    |
+| tokenName     | String   | True     | 币种名                    |
+| chainName     | String   | True     | 链名                      |
+| toAddress     | String   | True     | 接收方地址                |
+| amount        | Decimal  | True     | 提币数量                  |
+| status        | String   | True     | 交易状态，具体见“枚举定义”|
+| businessId    | String   | False    | 商户自定义的业务ID，如有   |
+| tag           | String   | False    | 该笔订单的备注             |
+| txId          | String   | False    | 交易哈希                  |
+| blockHigh     | String   | False    | 区块高度                  |
+| networkFee    | String   | True     | 网络手续费                |
+| platformFee   | String   | True     | 平台服务费                |
+| createTime    | String   | True     | 创建时间(UTC)             |
+| completeTime  | String   | False    | 完成时间(UTC)             |
+
+### 响应示例
+
+```json
+{
+    "code": 200,
+    "msg": "success",
+    "timestamp": "1725674596300",
+    "data": {
+        "id": "587096537146986496",
+        "chainName": "Tron_T",
+        "tokenName": "USDT_T",
+        "toAddress": "TKjLDbk7LC9NXzRBCYahKa8pzMHRfahJjn",
+        "amount": "0.15",
+        "status": "Success",
+        "businessId": "",
+        "tag": "",
+        "txId": "56a925bb3a90badb770f227e34a61737327e0eded81190e048c23ab6efa8ec9b",
+        "blockHigh": 50025541,
+        "networkFee": "2",
+        "platformFee": "0.15",
+        "createdTime": "2024-09-06 10:36:33",
+        "completeTime": "2024-09-06 10:37:32"
+    }
+}

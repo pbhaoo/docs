@@ -1,4 +1,42 @@
 ---
-title: 'Delete Plant'
-openapi: 'DELETE /plants/{id}'
+title: '发起提币'
+description: '发起一笔提币请求'
+openapi: 'POST /'
 ---
+
+### 接口地址  
+**POST** `/v1/account/withdraw`
+
+### 请求参数
+
+| 参数         | 数据类型 | 是否必须 | 描述                                                                 |
+|--------------|----------|----------|----------------------------------------------------------------------|
+| tokenName    | String   | True     | 需要提现的币种名                                                     |
+| chainName    | String   | True     | 接收方的链名，可通过币种信息接口获取。                               |
+| toAddress    | String   | True     | 接收方地址，需保证该地址有效性，可通过判断地址接口进行查验。           |
+| amount       | Decimal  | True     | 转账数量，最小转账数量与小数位精度必须符合要求，可在币种信息中获取。   |
+| timestamp    | Long     | True     | unix时间戳(毫秒)                                                     |
+| businessId   | String   | False    | 商户自定义的订单ID，如有，务必保证该 ID 唯一，如有重复，该笔转账将会取消。 |
+| tag          | String   | False    | 该笔订单的备注                                                       |
+| fee          | String   | False    | 区块链转账的费用设定                                                 |
+| callbackUrl  | String   | False    | 回调地址，该订单的转账信息会优先以此回调地址通知您                   |
+| confirmFirst | Integer  | False    | 当转账成功打包进区块时，首次回调需要的区块确认数                     |
+| confirmNeeded| Integer  | False    | 转账需要的区块确认数，此值需要大于confirmFirst                       |
+
+### 响应参数
+
+| 参数 | 数据类型 | 是否必须 | 描述                  |
+|------|----------|----------|-----------------------|
+| id   | String   | True     | 该笔订单的唯一ID      |
+
+### 响应示例
+
+```json
+{
+    "code": 200,
+    "msg": "success",
+    "timestamp": "1725672079650",
+    "data": {
+        "id": "587319206454890496"
+    }
+}

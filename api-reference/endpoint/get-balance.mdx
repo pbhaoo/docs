@@ -1,0 +1,43 @@
+---
+title: '获取账户余额'
+description: '获取账户的币种余额信息'
+openapi: 'GET /'
+---
+
+### 接口地址  
+**GET** `/v1/account/balance`
+
+### 请求参数
+
+| 参数       | 数据类型 | 是否必须 | 描述               |
+|------------|----------|----------|--------------------|
+| timestamp  | Long     | True     | unix时间戳(毫秒)   |
+
+### 响应参数
+
+| 参数       | 数据类型 | 是否必须 | 描述         |
+|------------|----------|----------|--------------|
+| tokenName  | String   | True     | 币种名       |
+| free       | String   | True     | 可用余额     |
+| freeze     | String   | True     | 冻结余额     |
+
+### 响应示例
+
+```json
+{
+    "code": 200,
+    "msg": "success",
+    "timestamp": "1725853044217",
+    "data": [       
+        {
+            "tokenName": "USDT",
+            "free": "1262.1129",
+            "freeze": "0.00"
+        },
+        {
+            "tokenName": "TRX",
+            "free": "873.3",
+            "freeze": "0.00"
+        }
+    ]
+}

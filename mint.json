@@ -63,9 +63,13 @@
     {
       "group": "请求",
       "pages": [
+        "api-reference/endpoint/get-tokens",
+        "api-reference/endpoint/address-legal",
         "api-reference/endpoint/generate-addr",
         "api-reference/endpoint/withdraw",
-        "api-reference/endpoint/address-legal"
+        "api-reference/endpoint/withdraw-query",
+        "api-reference/endpoint/get-balance",
+        "api-reference/endpoint/order-history"
       ]
     },
     {
