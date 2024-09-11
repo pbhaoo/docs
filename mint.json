@@ -79,6 +79,7 @@
         "api-reference/info/respose-info",
         "api-reference/info/sign-info",
         "api-reference/info/webhook-explain",
+        "api-reference/info/sub-accounts",
         "api-reference/info/params-eum",
         "api-reference/info/error-code"
       ]
