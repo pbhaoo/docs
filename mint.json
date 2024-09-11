@@ -119,9 +119,15 @@
       ]
     },
     {
-      "group": "变更日志",
+      "group": "API变更日志",
       "pages": [
-        "updata-log/logs"
+        "updata-log/api-update/logs"
+      ]
+    },
+    {
+      "group": "回调变更日志",
+      "pages": [
+        "updata-log/webhook-update/logs"
       ]
     }
 
