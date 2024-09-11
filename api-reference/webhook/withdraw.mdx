@@ -1,4 +1,25 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: '提币回调'
+description: '获取提币信息的通知'
+openapi: 'POST /'
 ---
+
+### 接口地址  
+**POST** `商户配置的回调地址`
+
+### 请求参数
+
+| 参数           | 数据类型 | 是否必须 | 描述                               |
+|----------------|----------|----------|------------------------------------|
+| webhookType    | String   | True     | 回调类型，此时值为“Withdraw”       |
+| id             | String   | True     | 订单ID                             |
+| status         | String   | True     | 订单状态，值为“WaitingConfirmation”或“Success” |
+| txId           | String   | True     | 链上交易哈希                       |
+| networkFee     | String   | True     | 网络手续费                         |
+| platformFee    | String   | True     | 平台服务费                         |
+| businessId     | String   | Flase    | 商户自定义的 ID，如果有             |
+
+### 请求示例
+
+```text
+id=588074140687273984&networkFee=0.1&platformFee=0.024&status=WaitingConfirmation&txId=0760df7272e19a5dbc2da6e921ec0d883c64e8351e39f9db6ed3456ef6079770&webhookType=Withdraw&timestamp=1725852073308

@@ -1,4 +1,30 @@
 ---
 title: '充值回调'
-description: 'Description of your new file.'
+description: '获取地址充值信息的通知.'
+openapi: 'POST /'
 ---
+
+### 接口地址  
+**POST** `商户配置的回调地址`
+
+### 请求参数
+
+| 参数           | 数据类型 | 是否必须 | 描述                               |
+|----------------|----------|----------|------------------------------------|
+| webhookType    | String   | True     | 回调类型，这里为“Deposit”          |
+| id             | String   | True     | 订单ID                             |
+| status         | String   | True     | 订单状态，值为“WaitingConfirmation”或“Success”或“Fail” |
+| chainName      | String   | True     | 链                                 |
+| tokenName      | String   | True     | 币名                               |
+| fromAddress    | String   | True     | 发送方地址                         |
+| toAddress      | String   | True     | 接收方地址（商户地址）             |
+| txId           | String   | True     | 链上交易哈希                       |
+| amount         | String   | True     | 充值数量                           |
+| blockHigh      | Integer  | True     | 被打包的区块高度                   |
+| blockConfirmNum| Integer  | True     | 回调时的区块确认数                 |
+| createdTime    | String   | True     | UTC时间                            |
+
+### 请求示例
+
+```text
+amount=20&blockConfirmNum=1&blockHigh=50100722&chainName=Tron&createdTime=2024-09-09 03:53:00&fromAddress=TKjLDbk7LC9NXzRBCYahKa8pzMHRfahJjn&id=588082155461152768&status=WaitingConfirmation&toAddress=THaN3NsBWCiZbT1QXaUQANvZMZbizVzZtE&tokenName=TRX&txId=21bb2e4d083e13837fc05fe48143dc124dbe6ac92847fde67ca5b964ccff1259&webhookType=Deposit&timestamp=1725853980816

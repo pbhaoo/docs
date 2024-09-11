@@ -27,7 +27,11 @@
   },
   "tabs": [
     {
-      "name": "商户 API",
+      "name": "商户API",
+      "url": "api-reference"
+    },
+    {
+      "name": "常见问题",
       "url": "api-reference"
     }
   ],
@@ -60,6 +64,21 @@
         "api-reference/introduction"
       ]
     },
+
+        {
+      "group": "接入说明",
+      "pages": [
+        "api-reference/info/api-key",
+        "api-reference/info/request-info",
+        "api-reference/info/respose-info",
+        "api-reference/info/sign-info",
+        "api-reference/info/webhook-explain",
+        "api-reference/info/params-eum",
+        "api-reference/info/error-code"
+      ]
+    },
+
+
     {
       "group": "请求",
       "pages": [
@@ -72,6 +91,7 @@
         "api-reference/endpoint/order-history"
       ]
     },
+
     {
       "group": "回调",
       "pages": [
