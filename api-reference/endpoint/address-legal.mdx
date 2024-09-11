@@ -5,7 +5,8 @@ openapi: 'POST /'
 ---
 
 
-**接口地址**: `POST /v1/common/address/legal`
+### 接口地址  
+**POST** `/v1/common/address/legal`
 
 ## 请求参数
 
@@ -14,7 +15,7 @@ openapi: 'POST /'
 | chainName  | String   | True     | 链           |
 | address    | String   | True     | 区块链地址   |
 
-## 响应参数
+### 响应参数
 
 `data` 字段的响应参数：
 
@@ -22,7 +23,7 @@ openapi: 'POST /'
 |--------|----------|----------|---------------------------|
 | result | Bool     | True     | False 为不合法,True 为合法 |
 
-## 响应示例
+### 响应示例
 
 ```json
 {
