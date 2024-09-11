@@ -4,11 +4,15 @@ description: ''
 ---
 
 
-- 目前除了公共接口，所有其它接口都需要进行签名验证，以保证请求数据不会被恶意篡改；
-- 需要签名的接口，生成的签名在请求头中以`signature`进行传递；
+- 目前除了公共接口，所有其它接口都规定需要进行签名验证，以保证请求数据不会被恶意篡改；
+- 接口中如果有注明：可以不签名，即你可以选择不签名，其它所有都需要进行签名；
+- 需要签名的接口，生成的签名在请求头中以字段`Signature`进行传递；
 
 
-### 签名示例 `POST /v1/account/withdraw`
+### 签名示例 
+
+#### 请求接口
+`POST /v1/account/withdraw`
 
 #### 请求参数
 
@@ -20,7 +24,7 @@ description: ''
 | toAddress  | 0x9C903Cc6233ea0E9275452C13efe967a04EBe58b |
 | timestamp  | 1724985575933                               |
 
-#### 签名生成的步骤
+#### 签名步骤
 
 1. **构建 Payload**
    将参数列表排列成一个字符串，用 `&` 分隔每个参数。对于上述参数，签名 payload 如下所示：  
@@ -29,7 +33,6 @@ description: ''
 ``` 
 tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933
 ```
-
 
 2. **使用 HMAC SHA-256 算法对 Payload 进行签名**
 
