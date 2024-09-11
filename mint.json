@@ -38,6 +38,10 @@
     {
       "name": "常见问题",
       "url": "questions"
+    },
+    {
+      "name": "更新日志",
+      "url": "update-log"
     }
   ],
   "anchors": [
@@ -113,7 +117,15 @@
         "questions/questions/sign",
         "questions/questions/network"
       ]
+    },
+    {
+      "group": "变更日志",
+      "pages": [
+        "updata-log/logs"
+      ]
     }
+
+
   ],
 
   "footerSocials": {
