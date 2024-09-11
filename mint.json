@@ -121,11 +121,10 @@
     {
       "group": "变更日志",
       "pages": [
-        "updata-log/api-update/logs",
-        "updata-log/webhook-update/logs"
+        "update-log/api-update/logs",
+        "update-log/webhook-update/logs"
       ]
     }
-
 
   ],
 
