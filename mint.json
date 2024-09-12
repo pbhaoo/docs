@@ -57,6 +57,7 @@
       "group": "概况",
       "pages": [
         "user-guide/overview/introduction",
+        "user-guide/overview/functional-mechanism",
         "user-guide/overview/user-scenario",
         "user-guide/overview/how-to-user"
       ]
@@ -81,6 +82,9 @@
     {
       "group": "编辑说明",
       "pages": [
+        "user-guide/essentials/introduction",
+        "user-guide/essentials/quickstart",
+        "user-guide/essentials/development",
         "user-guide/essentials/markdown",
         "user-guide/essentials/code",
         "user-guide/essentials/images",
