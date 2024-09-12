@@ -22,17 +22,17 @@ openapi: 'GET /'
 | 参数          | 数据类型 | 是否必须 | 描述                      |
 |---------------|----------|----------|---------------------------|
 | id            | String   | True     | 订单ID                    |
-| tokenName     | String   | True     | 币种名                    |
+| tokenName     | String   | True     | 币名                    |
 | chainName     | String   | True     | 链名                      |
 | toAddress     | String   | True     | 接收方地址                |
 | amount        | Decimal  | True     | 提币数量                  |
-| status        | String   | True     | 交易状态，具体见“枚举定义”|
+| status        | String   | True     | 交易状态，具体见“枚举定义”中的解释|
 | businessId    | String   | False    | 商户自定义的业务ID，如有   |
-| tag           | String   | False    | 该笔订单的备注             |
-| txId          | String   | False    | 交易哈希                  |
+| tag           | String   | False    | 订单备注             |
+| txId          | String   | False    | 链上交易哈希                  |
 | blockHigh     | String   | False    | 区块高度                  |
-| networkFee    | String   | True     | 网络手续费                |
-| platformFee   | String   | True     | 平台服务费                |
+| networkFee    | String   | True     | 收取的网络手续费                |
+| platformFee   | String   | True     | 收取的平台佣金               |
 | createTime    | String   | True     | 创建时间(UTC)             |
 | completeTime  | String   | False    | 完成时间(UTC)             |
 

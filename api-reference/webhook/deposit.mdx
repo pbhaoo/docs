@@ -13,16 +13,16 @@ openapi: 'POST /'
 |----------------|----------|----------|------------------------------------|
 | webhookType    | String   | True     | 回调类型，这里为“Deposit”          |
 | id             | String   | True     | 订单ID                             |
-| status         | String   | True     | 订单状态，值为“WaitingConfirmation”或“Success”或“Fail” |
+| status         | String   | True     | 订单状态，值为“WaitingConfirmation”，“Success”或“Fail” |
 | chainName      | String   | True     | 链                                 |
 | tokenName      | String   | True     | 币名                               |
 | fromAddress    | String   | True     | 发送方地址                         |
-| toAddress      | String   | True     | 接收方地址（商户地址）             |
+| toAddress      | String   | True     | 接收方地址（你的充值地址）             |
 | txId           | String   | True     | 链上交易哈希                       |
 | amount         | String   | True     | 充值数量                           |
-| blockHigh      | Integer  | True     | 被打包的区块高度                   |
+| blockHigh      | Integer  | True     | 交易所处的区块高度                   |
 | blockConfirmNum| Integer  | True     | 回调时的区块确认数                 |
-| createdTime    | String   | True     | UTC时间                            |
+| createdTime    | String   | True     | 创建时间(UTC)                         |
 
 ### 请求示例
 

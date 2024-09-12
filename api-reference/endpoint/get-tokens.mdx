@@ -11,13 +11,13 @@ openapi: 'GET /'
 
 | 参数      | 数据类型 | 是否必须 | 描述         |
 |-----------|----------|----------|--------------|
-| tokenName | String   | False    | 币种名，默认返回所有 |
+| tokenName | String   | False    | 币名，默认返回所有 |
 
 ### 响应参数
 
 | 参数               | 数据类型 | 是否必须 | 描述                                                          |
 |--------------------|----------|----------|---------------------------------------------------------------|
-| tokenName          | String   | True     | 币种名                                                        |
+| tokenName          | String   | True     | 币                                                        |
 | fullName           | String   | True     | 全称                                                          |
 | \<chainList\>      | Object   | True     | 该币种支持的提现/充值的链列表，同一种币有可能在多个链中发行，但本质上属于同一资产 |
 | chainId            | String   | True     | 链ID，唯一                                                    |

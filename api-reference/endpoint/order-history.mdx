@@ -69,12 +69,12 @@ openapi: 'GET /'
 | amount       | String   | True     | 提现数量               |
 | toAddress    | String   | True     | 接收方地址             |
 | txId         | String   | True     | 链上交易ID             |
-| networkFee   | String   | True     | 支付给区块链网络的费用 |
+| networkFee   | String   | True     | 网络手续费 |
 | platformFee  | String   | True     | 平台收取的佣金         |
-| totalFee     | String   | True     | 总手续费，网络费用+平台佣金 |
+| totalFee     | String   | True     | 总费用，网络手续费+平台佣金 |
 | createdTime  | String   | True     | 创建时间 (UTC)         |
 | completeTime | String   | True     | 完成时间 (UTC)         |
-| status       | String   | True     | 订单状态，详见“API参数"中的解释 |
+| status       | String   | True     | 订单状态，详见“枚举定义"中的解释 |
 
 
 ### 响应示例（提现）
