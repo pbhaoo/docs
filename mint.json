@@ -61,6 +61,15 @@
         "user-guide/overview/how-to-user"
       ]
     },
+     {
+      "group": "基础信息",
+      "pages": [
+        "user-guide/basic_information/key_terms",
+        "user-guide/basic_information/chains",
+        "user-guide/basic_information/tokens",
+        "user-guide/basic_information/commission_rate"
+      ]
+    },
         {
       "group": "快速开始",
       "pages": [
@@ -133,8 +142,8 @@
   ],
 
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
+    "x": "https://x.com/basswallet",
+    "github": "https://github.com/basswallet",
     "linkedin": "https://www.linkedin.com/company/mintsearch"
   }
 }
