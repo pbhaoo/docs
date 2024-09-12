@@ -11,30 +11,30 @@ openapi: 'GET /'
 
 | 参数      | 数据类型 | 是否必须 | 描述         |
 |-----------|----------|----------|--------------|
-| tokenName | String   | False    | 币名，默认返回所有 |
+| tokenName | String   | False    | 币名，不传默认返回所有币 |
 
 ### 响应参数
 
 | 参数               | 数据类型 | 是否必须 | 描述                                                          |
 |--------------------|----------|----------|---------------------------------------------------------------|
-| tokenName          | String   | True     | 币                                                        |
+| tokenName          | String   | True     | 币名                                                        |
 | fullName           | String   | True     | 全称                                                          |
 | \<chainList\>      | Object   | True     | 该币种支持的提现/充值的链列表，同一种币有可能在多个链中发行，但本质上属于同一资产 |
-| chainId            | String   | True     | 链ID，唯一                                                    |
-| chainName          | String   | True     | 支持发行的链名，唯一                                          |
+| chainId            | String   | True     | 链ID                                                    |
+| chainName          | String   | True     | 支持的链名，唯一                                          |
 | tokenId            | String   | True     | 此链上该币种的ID，唯一                                        |
-| contractId         | String   | False    | 币种的合约ID，智能合约代币才有此值                            |
-| tokenType          | String   | True     | 币种类型, 当值为“Base"时, 代表是该链的主币                    |
+| contractId         | String   | False    | 币种的合约ID,如果是智能合约代币，才有此值，例如“USDT"                |
+| tokenType          | String   | True     | 币种类型, 当是对应链的主币时，约定值为“Base",例如"Ethereum"链的主币为"ETH"                 |
 | decimals           | Int      | True     | 币种的精度                                                    |
-| displayDecimal     | Int      | True     | 该币种保留的最长小数位，提现数量受此值限制                    |
-| blockConfirmNum    | Int      | True     | 需要的区块确认数。安全上账需要的区块确认数。                    |
-| minDepositAmount   | String   | True     | 充值上账最小金额，小于此金额的充值将不会上账                   |
-| minWithdrawAmount  | String   | True     | 链上提币的最小金额，小于此金额拒绝提币                        |
-| fee                | String   | True     | 提币的网络手续费，此值并非固定不变                            |
-| depositEnable      | Bool     | True     | 该币种是否可以充值                                            |
+| displayDecimal     | Int      | True     | 币种保留的最长小数位，提现接口的数量受此值的限制                    |
+| blockConfirmNum    | Int      | True     | 安全上账需要的区块确认数，达到此值将解冻金额                   |
+| minDepositAmount   | String   | True     | 最小充值数量，小于此数量将不会上账                   |
+| minWithdrawAmount  | String   | True     | 提现最小数量，小于此数量将不能提现                       |
+| fee                | String   | True     | 提币的网络手续费，此值根据区块链网络情况会动态调整              |
+| depositEnable      | Bool     | True     | 充值是否正常，True为正常，False为暂停                                            |
 | sda                | String   | False    | 暂停充值公告信息，如果有                                      |
 | suspendDepositDesc | String   | False    | 暂停充值描述信息，如果有                                      |
-| withdrawEnable     | Bool     | True     | 币种是否可以提现                                              |
+| withdrawEnable     | Bool     | True     | 提现是否正常,True为正常，False为暂停                                               |
 | swa                | String   | False    | 暂停提现公告信息，如果有                                      |
 | suspendWithdrawDesc| String   | False    | 暂停提现描述信息，如果有                                      |
 
