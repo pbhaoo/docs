@@ -27,9 +27,8 @@ description: ''
 #### 签名步骤
 
 1. **构建 Payload**
-   将参数列表排列成一个字符串，用 `&` 分隔每个参数。对于上述参数，签名 payload 如下所示：  
 
-
+将参数列表排列成一个字符串，用 `&` 分隔每个参数。对于上述参数，签名 payload 如下所示：
 ``` 
 tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933
 ```
@@ -41,7 +40,7 @@ tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C
 4. **将输出的签名放到请求头中 `Signature`**
 
 #### 发送请求
-
+参数通过 request body 发送的 cURL 示例
 ```bash
 $ curl -H "X-BS-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" \
     -H "Signature: <signature>" \
@@ -49,50 +48,6 @@ $ curl -H "X-BS-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju
     -d 'tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933'
 ```
 
-#### 签名示例
-
-点击下方的链接以查看不同语言的签名示例：
-
-<details>
-<summary>Python</summary>
 
 
-```python
-import hmac
-import hashlib
-import requests
-import time
 
-# 设置身份验证：
-access_key = '替换成您的 access_key'
-secret_key = '替换成您的 secret_key'
-
-# 设置请求参数：
-params = {
-    'tokenName': 'USDT',
-    'toAddress': '0x9C903Cc6233ea0E9275452C13efe967a04EBe58b',
-    'chainName': 'Ethereum',
-    'amount':  342.892,
-}
-
-# 参数中添加时间戳：
-timestamp = int(time.time() * 1000) # 以毫秒为单位的 UNIX 时间戳
-params['timestamp'] = timestamp
-
-# 参数中加签名：
-payload = '&'.join([f'{param}={value}' for param, value in params.items()])
-m = hmac.new(secret_key.encode("utf-8"), payload.encode("ASCII"), hashlib.sha256)
-signature = m.hexdigest()
-params['signature'] = signature
-
-# 发送请求：
-headers = {
-    'X-BS-APIKEY': access_key,
-}
-response = requests.post(
-    'https://api.basswallet.io/api/v1/account/withdraw',
-    headers=headers,
-    data=params,
-)
-print(response.json())
-    ```
