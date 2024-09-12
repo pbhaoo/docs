@@ -12,8 +12,8 @@
     "light": "#348ce3",
     "dark": "#198CFF",
     "anchors": {
-      "from": "#198CFF",
-      "to": "#198CFF"
+      "from": "#0D9373",
+      "to": "#07C983"
     }
   },
   "topbarLinks": [
@@ -55,6 +55,7 @@
         "user-guide/overview/how-to-user"
       ]
     },
+
     {
       "group": "基础信息",
       "pages": [
@@ -64,6 +65,7 @@
         "user-guide/basic-information/commission_rate"
       ]
     },
+
     {
       "group": "快速开始",
       "pages": [
