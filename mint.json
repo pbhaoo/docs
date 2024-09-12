@@ -1,15 +1,12 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "Bass Wallet",
-
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg",
-    "href":"https://beta.basswallet.io/"
+    "href": "https://beta.basswallet.io/"
   },
-
   "favicon": "/logo/favicon.svg",
-
   "colors": {
     "primary": "#198CFF",
     "light": "#07C983",
@@ -19,7 +16,6 @@
       "to": "#07C983"
     }
   },
-  
   "topbarLinks": [
     {
       "name": "客户支持",
@@ -31,7 +27,7 @@
     "url": "https://beta.basswallet.io/"
   },
   "tabs": [
-        {
+    {
       "name": "商户指南",
       "url": "user-guide"
     },
@@ -49,11 +45,9 @@
     }
   ],
   "anchors": [
-
   ],
-
   "navigation": [
-       {
+    {
       "group": "概况",
       "pages": [
         "user-guide/overview/introduction",
@@ -61,16 +55,16 @@
         "user-guide/overview/how-to-user"
       ]
     },
-     {
+    {
       "group": "基础信息",
       "pages": [
-        "user-guide/basic_information/key_terms",
-        "user-guide/basic_information/chains",
-        "user-guide/basic_information/tokens",
-        "user-guide/basic_information/commission_rate"
+        "user-guide/basic-information/key_terms",
+        "user-guide/basic-information/chains",
+        "user-guide/basic-information/tokens",
+        "user-guide/basic-information/commission_rate"
       ]
     },
-        {
+    {
       "group": "快速开始",
       "pages": [
         "user-guide/get-start/introduction",
@@ -89,7 +83,7 @@
         "user-guide/essentials/reusable-snippets"
       ]
     },
-        {
+    {
       "group": "接入说明",
       "pages": [
         "api-reference/info/api-key",
@@ -102,7 +96,6 @@
         "api-reference/info/error-code"
       ]
     },
-
     {
       "group": "请求",
       "pages": [
@@ -115,7 +108,6 @@
         "api-reference/endpoint/order-history"
       ]
     },
-
     {
       "group": "回调",
       "pages": [
@@ -123,7 +115,7 @@
         "api-reference/webhook/withdraw"
       ]
     },
-        {
+    {
       "group": "常见问题",
       "pages": [
         "questions/questions/webhook",
@@ -138,9 +130,7 @@
         "update-log/webhook-update/logs"
       ]
     }
-
   ],
-
   "footerSocials": {
     "x": "https://x.com/basswallet",
     "github": "https://github.com/basswallet",
