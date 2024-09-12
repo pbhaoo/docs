@@ -9,11 +9,11 @@
   "favicon": "/logo/favicon.svg",
   "colors": {
     "primary": "#198CFF",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "light": "#348ce3",
+    "dark": "#198CFF",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#198CFF",
+      "to": "#198CFF"
     }
   },
   "topbarLinks": [
