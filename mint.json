@@ -21,7 +21,7 @@
     }
   },
   "feedback": {
-    "raiseIssue": true
+    "raiseIssue": false
   },
 
   "topbarLinks": [
