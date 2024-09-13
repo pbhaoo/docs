@@ -7,6 +7,7 @@
     "light": "/logo/light.svg",
     "href":"https://beta.basswallet.io/"
   },
+  "backgroundImage": "/images/background-.png",
 
   "favicon": "/logo/favicon.svg",
 
@@ -18,6 +19,9 @@
       "from": "#0D9373",
       "to": "#02D6CA"
     }
+  },
+  "feedback": {
+    "raiseIssue": true
   },
 
   "topbarLinks": [

@@ -12,15 +12,15 @@ description: ''
 
 ### 接入 URL
 
-- **Beta环境**:`https://api-beta.baaswallet.io/baaswallet/api/`
+**https://api-beta.baaswallet.io/baaswallet/api/**
+
+
+### 请求鉴权
+
+- 所有的接口都需要 API-Key,在请求头中以 `X-BS-APIKEY` 字段传递；
+- 每个 API-Key 可以对接口权限进行配置，默认所有接口不能访问。请求前请先确保 API-Key 先有对应的访问权限。
 
 ### 请求限频
 
 对某单个节点请求的频率不能超出单位时间内该节点最大允许访问次数的限制。
 违反任何一个速率限制的时候，将返回：429
-
-### 请求鉴权
-
-- 所有的接口都需要 API-Key,在 HTTP 请求头中以 `X-BS-APIKEY` 字段传递。
-- 每个 API-Key 可以对接口权限进行配置，默认所有接口不能访问。请求接口前，请先确保 API-Key 先有对应的访问权限。
-- 所有签名接口都需要传递`timestamp` 参数，其值应当是请求发送时刻的 UNIX 时间戳（毫秒）。服务器收到请求时会判断请求中的时间戳，如果是 `5000 `毫秒之前发出的，则请求会被认为无效。

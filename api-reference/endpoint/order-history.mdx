@@ -4,20 +4,20 @@ description: '获取充值或提现的历史订单信息'
 openapi: 'GET /'
 ---
 
-### 接口地址  
+### 接口地址
 **GET** `/v1/account/order/history`
 
 ### 请求参数
 
 | 名称       | 类型 | 是否必须 | 描述                                                  |
 |------------|----------|----------|-------------------------------------------------------|
-| type       | String   | True     | 充值或提现，取值范围：deposit 或 withdraw             |
+| type       | String   | True     | 充值或提现，取值范围：`deposit` 或 `withdraw `            |
 | timestamp  | Long     | True     | unix时间戳(毫秒)                                      |
 | tokenName  | String   | False    | 默认为全部币种                                        |
 | startTime  | Long     | False    | 默认为当前时间30天前的时间戳                           |
 | endTime    | Long     | False    | 默认为当前时间戳                                       |
 
-**注意**: 查询的最大时间间隔为30天，即 `endTime - startTime <= 30 Day`
+**注意**: 查询的最大时间间隔为30天，即： `endTime - startTime <= 30 Day`
 
 ### 响应参数（充值）
 
@@ -32,31 +32,8 @@ openapi: 'GET /'
 | txId         | String   | True     | 链上交易ID             |
 | createdTime  | String   | True     | 创建时间 (UTC)         |
 | completeTime | String   | True     | 完成时间 (UTC)         |
-| status       | String   | True     | 交易状态，具体见“枚举定义” |
+| status       | String   | True     | 订单状态，具体见“枚举定义” |
 
-### 响应示例（充值）
-
-```json
-{
-    "code": 200,
-    "msg": "success",
-    "timestamp": "1725853367355",
-    "data": [
-        {
-            "id": "588061066492252160",
-            "chainName": "Tron",
-            "tokenName": "TRX",
-            "amount": "20.00",
-            "fromAddress": "TKjLDbk7LC9NXzRBCYahKa8pzMHRfahJjn",
-            "toAddress": "TSWoFUDouEfFdGrDEvd6S6WBhQsLKs7Kqo",
-            "txId": "5efd31cca2c3e1b8a0812aa9da58dddb4c8f8421ede1778c18fe3cee6aa586ae",
-            "createdTime": "2024-09-09 02:29:13",
-            "completeTime": "2024-09-09 02:30:11",
-            "status": "Success"
-        }
-    ]
-}
-```
 
 ### 响应参数（提现）
 
@@ -77,28 +54,56 @@ openapi: 'GET /'
 | status       | String   | True     | 订单状态，详见“枚举定义"中的解释 |
 
 
-### 响应示例（提现）
-```json
-{
-    "code": 200,
-    "msg": "success",
-    "timestamp": "1725853275828",
-    "data": [
-        {
-            "id": "588076016694595584",
-            "businessId": "0909_test7",
-            "chainName": "Tron",
-            "tokenName": "USDT",
-            "amount": "52.89",
-            "toAddress": "TKjLDbk7LC9NXzRBCYahKa8pzMHRfahJjn",
-            "txId": "3eeee30367dd33e257458fe34098a5ee353cc1501053d756484b8b52fdbe5795",
-            "networkFee": "2",
-            "platformFee": "0.1",
-            "totalFee": "2.1",
-            "createdTime": "2024-09-09 03:28:37",
-            "completeTime": "2024-09-09 03:29:37",
-            "status": "Success"
-        }
-    ]
-}
-```
+
+### 响应示例
+
+<CodeGroup>
+
+    ```json 提现
+    {
+        "code": 200,
+        "msg": "success",
+        "timestamp": "1725853275828",
+        "data": [
+                    {
+                        "id": "588076016694595584",
+                        "businessId": "0909_test7",
+                        "chainName": "Tron",
+                        "tokenName": "USDT",
+                        "amount": "52.89",
+                        "toAddress": "TKjLDbk7LC9NXzRBCYahKa8pzMHRfahJjn",
+                        "txId": "3eeee30367dd33e257458fe34098a5ee353cc1501053d756484b8b52fdbe5795",
+                        "networkFee": "2",
+                        "platformFee": "0.1",
+                        "totalFee": "2.1",
+                        "createdTime": "2024-09-09 03:28:37",
+                        "completeTime": "2024-09-09 03:29:37",
+                        "status": "Success"
+                    }
+        ]
+    }
+    ```
+
+    ```json 充值
+    {
+        "code": 200,
+        "msg": "success",
+        "timestamp": "1725853367355",
+        "data": [
+                    {
+                        "id": "588061066492252160",
+                        "chainName": "Tron",
+                        "tokenName": "TRX",
+                        "amount": "20.00",
+                        "fromAddress": "TKjLDbk7LC9NXzRBCYahKa8pzMHRfahJjn",
+                        "toAddress": "TSWoFUDouEfFdGrDEvd6S6WBhQsLKs7Kqo",
+                        "txId": "5efd31cca2c3e1b8a0812aa9da58dddb4c8f8421ede1778c18fe3cee6aa586ae",
+                        "createdTime": "2024-09-09 02:29:13",
+                        "completeTime": "2024-09-09 02:30:11",
+                        "status": "Success"
+                    }
+        ]
+    }
+    ```
+
+</CodeGroup>

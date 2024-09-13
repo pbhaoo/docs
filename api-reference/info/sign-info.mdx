@@ -3,18 +3,20 @@ title: '签名认证'
 description: ''
 ---
 
-
+## 签名说明
 - 目前除了公共接口，所有其它接口都规定需要进行签名验证，以保证请求数据不会被恶意篡改；
-- 接口中如果有注明：可以不签名，即你可以选择不签名，其它所有都需要进行签名；
-- 需要签名的接口，生成的签名在请求头中以字段`Signature`进行传递；
+- 接口中有说明(可以不签名)，即可以选择不签名，其它没有特别说明的接口都需要进行签名；
+- 需要签名的接口，生成的签名需要在请求头中以字段`Signature`进行传递；
+- 所有签名接口都需要在请求参数中带上：`timestamp` ，其值应当是请求发送时刻的 UNIX 时间戳（毫秒）。服务器收到请求时会判断请求中的时间戳，如果是 `5000`毫秒之前发出的，则请求会被认为无效。
 
 
-### 签名示例 
 
-#### 请求接口
+## 请求示例
+
+### 请求接口
 `POST /v1/account/withdraw`
 
-#### 请求参数
+### 请求参数
 
 | 参数名称   | 取值                                        |
 |------------|---------------------------------------------|
@@ -24,7 +26,7 @@ description: ''
 | toAddress  | 0x9C903Cc6233ea0E9275452C13efe967a04EBe58b |
 | timestamp  | 1724985575933                               |
 
-#### 签名步骤
+### 签名步骤
 
 1. **构建 Payload**
 
@@ -37,9 +39,9 @@ tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C
 
 3. **将输出的签名编码为 16 进制格式**
 
-4. **将输出的签名放到请求头中 `Signature`**
+4. **将输出的签名放到请求头中 ：`Signature`**
 
-#### 发送请求
+### 发送请求
 参数通过 request body 发送的 cURL 示例
 ```bash
 $ curl -H "X-BS-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" \
@@ -48,6 +50,175 @@ $ curl -H "X-BS-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju
     -d 'tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933'
 ```
 
+## 签名Demo
+
+下面是不同编程语言签名部分的Demo，供参考。
+
+<CodeGroup>
+
+    ```python PYTHON
+import hmac
+import hashlib
+import requests
+import time
+
+# 设置身份验证：
+access_key = '替换成您的 access_key'
+secret_key = '替换成您的 secret_key'
+
+# 设置请求参数：
+params = {
+    'tokenName': 'USDT',
+    'toAddress': '0x9C903Cc6233ea0E9275452C13efe967a04EBe58b',
+    'chainName': 'Ethereum',
+    'amount':  342.892,
+}
+
+# 参数中添加时间戳：
+timestamp = int(time.time() * 1000) # 以毫秒为单位的 UNIX 时间戳
+params['timestamp'] = timestamp
+
+# 参数中加签名：
+payload = '&'.join([f'{param}={value}' for param, value in params.items()])
+m = hmac.new(secret_key.encode("utf-8"), payload.encode("ASCII"), hashlib.sha256)
+signature = m.hexdigest()
+params['signature'] = signature
+
+# 发送请求：
+headers = {
+    'X-BS-APIKEY': access_key,
+}
+response = requests.post(
+    'https://api.basswallet.io/api/v1/account/withdraw',
+    headers=headers,
+    data=params,
+)
+print(response.json())
+```
+
+```json JAVA
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.io.OutputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        // 设置身份验证
+        String accessKey = "替换成您的 access_key";
+        String secretKey = "替换成您的 secret_key";
+
+        // 设置请求参数
+        Map<String, String> params = new HashMap<>();
+        params.put("tokenName", "USDT");
+        params.put("toAddress", "0x9C903Cc6233ea0E9275452C13efe967a04EBe58b");
+        params.put("chainName", "Ethereum");
+        params.put("amount", "342.892");
+
+        // 参数中添加时间戳
+        long timestamp = System.currentTimeMillis();
+        params.put("timestamp", String.valueOf(timestamp));
+
+        // 参数中加签名
+        String payload = params.entrySet().stream()
+                .map(entry -> entry.getKey() + "=" + entry.getValue())
+                .collect(Collectors.joining("&"));
+        String signature = generateHMAC(secretKey, payload);
+        params.put("signature", signature);
+
+        // 发送请求
+        String response = sendPostRequest("https://api.basswallet.io/api/v1/account/withdraw", accessKey, params);
+        System.out.println(response);
+    }
+
+    private static String generateHMAC(String key, String data) throws Exception {
+        Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+        SecretKeySpec secret_key = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+        sha256_HMAC.init(secret_key);
+
+        byte[] hash = sha256_HMAC.doFinal(data.getBytes(StandardCharsets.UTF_8));
+        StringBuilder result = new StringBuilder();
+        for (byte b : hash) {
+            result.append(String.format("%02x", b));
+        }
+        return result.toString();
+    }
+
+    private static String sendPostRequest(String requestUrl, String accessKey, Map<String, String> params) throws Exception {
+        URL url = new URL(requestUrl);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("POST");
+        con.setRequestProperty("X-BS-APIKEY", accessKey);
+        con.setDoOutput(true);
+
+        String postData = params.entrySet().stream()
+                .map(entry -> entry.getKey() + "=" + entry.getValue())
+                .collect(Collectors.joining("&"));
+
+        try (OutputStream os = con.getOutputStream()) {
+            os.write(postData.getBytes(StandardCharsets.UTF_8));
+        }
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuilder content = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+        }
+
+        in.close();
+        con.disconnect();
+        return content.toString();
+```
+
+```php PHP
+<?php
+// 设置身份验证：
+$accessKey = '替换成您的 access_key';
+$secretKey = '替换成您的 secret_key';
+
+// 设置请求参数：
+$params = [
+    'tokenName' => 'USDT',
+    'toAddress' => '0x9C903Cc6233ea0E9275452C13efe967a04EBe58b',
+    'chainName' => 'Ethereum',
+    'amount' => '342.892',
+];
+
+// 参数中添加时间戳：
+$timestamp = round(microtime(true) * 1000); // 以毫秒为单位的 UNIX 时间戳
+$params['timestamp'] = $timestamp;
+
+// 参数中加签名：
+$payload = http_build_query($params);
+$signature = hash_hmac('sha256', $payload, $secretKey);
+$params['signature'] = $signature;
+
+// 发送请求：
+$ch = curl_init('https://api.basswallet.io/api/v1/account/withdraw');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'X-BS-APIKEY: ' . $accessKey,
+]);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+
+</CodeGroup>
 
 
 
