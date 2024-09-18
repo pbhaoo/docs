@@ -7,6 +7,12 @@ openapi: 'POST /'
 ### 接口地址  
 **POST** `商户配置的回调地址`
 
+<Tip>
+
+每笔充值订单，会回调两次，点击 [这里](/user-guide/useful-docs/webhook) 了解详细的回调规则。
+
+</Tip>
+
 ### 请求参数
 
 | 参数           | 数据类型 | 是否必须 | 描述                               |
@@ -28,3 +34,4 @@ openapi: 'POST /'
 
 
 `amount=20&blockConfirmNum=1&blockHigh=50100722&chainName=Tron&createdTime=2024-09-09 03:53:00&fromAddress=TKjLDbk7LC9NXzRBCYahKa8pzMHRfahJjn&id=588082155461152768&status=WaitingConfirmation&toAddress=THaN3NsBWCiZbT1QXaUQANvZMZbizVzZtE&tokenName=TRX&txId=21bb2e4d083e13837fc05fe48143dc124dbe6ac92847fde67ca5b964ccff1259&webhookType=Deposit&timestamp=1725853980816`
+
