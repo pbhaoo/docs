@@ -27,19 +27,21 @@ description: ''
 | timestamp  | 1724985575933                               |
 
 ### 签名步骤
+<Steps>
+  <Step title="构建 Payload">
+    将参数列表排列成一个字符串，用 `&` 分隔每个参数。对于上述参数,Payload如下:  `tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933`
 
-1. **构建 Payload**
+  </Step>
+  <Step title="使用 HMAC SHA-256 算法对 Payload 进行签名">
 
-将参数列表排列成一个字符串，用 `&` 分隔每个参数。对于上述参数，签名 payload 如下所示：
-``` 
-tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933
-```
+  </Step>
+  <Step title="将输出的签名编码为 16 进制格式">
 
-2. **使用 HMAC SHA-256 算法对 Payload 进行签名**
+  </Step>
+    <Step title="将输出的签名放到请求头中 ：`Signature`">
 
-3. **将输出的签名编码为 16 进制格式**
-
-4. **将输出的签名放到请求头中 ：`Signature`**
+  </Step>
+</Steps>
 
 ### 发送请求
 参数通过 request body 发送的 cURL 示例

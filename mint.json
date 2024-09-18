@@ -7,7 +7,7 @@
     "light": "/logo/light.svg",
     "href":"https://beta.basswallet.io/"
   },
-  "backgroundImage": "/images/light-background.png",
+  "backgroundImage": "/images/background.png",
 
   "favicon": "/logo/favicon.svg",
 
@@ -28,6 +28,10 @@
     {
       "name": "客户支持",
       "url": "https://client.krosuite.com/?source=544948018013671424"
+    },
+        {
+      "name": "English",
+      "url": "https://docs-beta.basswallet.io/user-guide/overview/introduction"
     }
   ],
   "topbarCtaButton": {
@@ -69,32 +73,17 @@
      {
       "group": "基础信息",
       "pages": [
-        "user-guide/basic-information/key_terms",
         "user-guide/basic-information/chains",
         "user-guide/basic-information/tokens",
-        "user-guide/basic-information/commission_rate"
+        "user-guide/basic-information/price_rate",
+        "user-guide/basic-information/min_deposit_withdraw",
+        "user-guide/basic-information/key_terms"
       ]
     },
         {
-      "group": "快速开始",
+      "group": "有用的文档",
       "pages": [
-        "user-guide/get-start/introduction",
-        "user-guide/get-start/quickstart",
-        "user-guide/get-start/development"
-      ]
-    },
-    {
-      "group": "编辑说明",
-      "pages": [
-        "user-guide/essentials/introduction",
-        "user-guide/essentials/quickstart",
-        "user-guide/essentials/development",
-        "user-guide/essentials/markdown",
-        "user-guide/essentials/code",
-        "user-guide/essentials/images",
-        "user-guide/essentials/settings",
-        "user-guide/essentials/navigation",
-        "user-guide/essentials/reusable-snippets"
+        "user-guide/useful-docs/webhook"
       ]
     },
         {
@@ -132,7 +121,7 @@
       ]
     },
         {
-      "group": "常见问题",
+      "group": "FAQ",
       "pages": [
         "questions/questions/webhook",
         "questions/questions/sign",
@@ -142,8 +131,7 @@
     {
       "group": "变更日志",
       "pages": [
-        "update-log/api-update/logs",
-        "update-log/webhook-update/logs"
+        "update-log/api-update/logs"
       ]
     }
 
@@ -151,7 +139,6 @@
 
   "footerSocials": {
     "x": "https://x.com/basswallet",
-    "github": "https://github.com/basswallet",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "github": "https://github.com/basswallet"
   }
 }

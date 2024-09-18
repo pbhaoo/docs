@@ -1,16 +1,30 @@
 ---
 title: '支持的币'
-description: '列举了平台支持的所有币种信息'
+description: '更详细的代币信息可通过接口`获取币种信息`获取'
 ---
 
 
-| ID     | 币    | 全称              | 链       | 类型   | 精度 | 合约地址                                          |
-|--------|-------|-------------------|----------|--------|------|---------------------------------------------------|
-| 102002 | ETH   | Ethereum          | Ethereum | Base   | 18   | 无                                                 |
-| 103001 | TRX   | TRX               | Tron     | Base   | 6    | 无                                                 |
-| 103005 | USDD  | Decentralized USD | Tron     | TRC20 | 18   | 0xdac17f958d2ee523a2206206994597c13d831ec7         |
-| 102004 | USDC  | USD Coin          | Ethereum | ERC20 | 6    | 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48         |
-| 102003 | USDT  | Tether USD        | Ethereum | ERC20 | 6    | 0xdac17f958d2ee523a2206206994597c13d831ec7         |
-| 103002 | USDT  | Tether USD        | Tron     | TRC20 | 6    | 0xdac17f958d2ee523a2206206994597c13d831ec7         |
-| 102005 | TUSD  | TrueUSD           | Ethereum | ERC20 | 18   | 0xdac17f958d2ee523a2206206994597c13d831ec7         |
-| 103003 | TUSD  | TrueUSD           | Tron     | TRC20 | 18   | 0xdac17f958d2ee523a2206206994597c13d831ec7         |
+<Note>
+    一个代币，可能会在多条链上发行，本质上属于同一资产。因此，为了准确识别资产，接口需要通过“币名+链名”的组合进行区分。在传递币名和链名时，必须与接口定义的币名和链名保持一致。
+</Note>
+
+## 稳定币
+与现实世界的法定货币（如美元、欧元）或其他资产（如黄金）挂钩的加密货币.
+
+| ID     | 币    | 类型     | 链        | 合约地址                                       |
+|--------|------|--------|----------|--------------------------------------------|
+| 103005 | USDD | TRC-20 | Tron     | TPYmHEhy5n8TCEfYGqW2rPxsghSfzghPDn         |
+| 102006 | USDD | ERC-20 | Ethereum | 0x0C10bF8FcB7Bf5412187A595ab97a3609160b5c6 |
+| 102004 | USDC | ERC-20 | Ethereum | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 |
+| 102003 | USDT | ERC-20 | Ethereum | 0xdAC17F958D2ee523a2206206994597C13D831ec7 |
+| 103002 | USDT | TRC-20 | Tron     | TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t         |
+| 102005 | TUSD | ERC-20 | Ethereum | 0x0000000000085d4780B73119b644AE5ecd22b376 |
+| 103003 | TUSD | TRC-20 | Tron     | TUpMhErZL2fhh4sVNULAbNKLokS4GjC1F4         |
+
+
+## 代币
+在虚拟货币交易所上价格随时在波动的代币.
+| ID     | 币    | 类型     | 链                | 合约地址                                       |
+|--------|------|--------|----------|--------------------------------------------|
+| 102002 | ETH  | Base   | Ethereum         | -                                          |
+| 103001 | TRX  | Base   | Tron                  | -                                          |
