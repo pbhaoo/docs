@@ -8,6 +8,9 @@
     "href":"https://beta.basswallet.io/"
   },
   "backgroundImage": "/images/background.png",
+  "background": {
+    "style": "windows"
+  },
 
   "favicon": "/logo/favicon.svg",
 
