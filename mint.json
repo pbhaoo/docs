@@ -38,8 +38,8 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "官网",
-    "url": "https://beta.basswallet.io/"
+    "name": "去后台",
+    "url": "https://console-beta.basswallet.io/"
   },
   "tabs": [
         {
