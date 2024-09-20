@@ -4,7 +4,7 @@ description: '获取平台支持的币种信息,币种相关信息可在其他�
 openapi: 'GET /'
 ---
 
-### 接口地址  
+### 接口地址
 **GET** `/v1/common/tokens`
 
 ### 请求参数
@@ -14,7 +14,7 @@ openapi: 'GET /'
 | tokenName | String   | False    | 币名，不传默认返回所有币 |
 
 <Tip>
- 同一个代币，可能在多条链上发行，从参数`chainList`中可获取到该币在哪些链发行，以及其对应的信息。有几个
+    同一个代币，可能在多条链上发行，从参数`chainList`中可获取到该币在哪些链发行，以及其对应的信息。有几个
     信息是值得注意：提现数量的小数位限制/最小提现数量/最小充值数量等，详见下方说明。
 
 </Tip>
@@ -25,18 +25,18 @@ openapi: 'GET /'
 |--------------------|----------|----------|---------------------------------------------------------------|
 | tokenName          | String   | True     | 币名                                                        |
 | fullName           | String   | True     | 全称                                                          |
-| \<chainList\>      | Object   | True     | 该币种支持的提现/充值的链列表，同一种币有可能在多个链中发行，但本质上属于同一资产 |
+| \<chainList\>      | Object   | True     | 该币种支持的提现/充值的链列表，一个代币可能在多个链上发行，本质属于同一资产 |
 | chainId            | String   | True     | 链ID                                                    |
-| chainName          | String   | True     | 支持的链名，唯一                                          |
-| tokenId            | String   | True     | 此链上该币种的ID，唯一                                        |
+| chainName          | String   | True     | 链名，唯一                                          |
+| tokenId            | String   | True     | 币种ID，唯一                                        |
 | contractId         | String   | False    | 币种的合约ID,如果是智能合约代币，才有此值，例如“USDT"                |
 | tokenType          | String   | True     | 币种类型, 当是对应链的主币时，约定值为“Base",例如"Ethereum"链的主币为"ETH"                 |
 | decimals           | Int      | True     | 币种的精度                                                    |
-| displayDecimal     | Int      | True     | 币种保留的最长小数位，提现接口的数量受此值的限制                    |
+| displayDecimal     | Int      | True     | 币种金额显示的最长小数位，提现接口的数量受此值的限制                    |
 | blockConfirmNum    | Int      | True     | 安全上账需要的区块确认数，达到此值将解冻金额                   |
 | minDepositAmount   | String   | True     | 最小充值数量，小于此数量将不会上账                   |
 | minWithdrawAmount  | String   | True     | 提现最小数量，小于此数量将不能提现                       |
-| fee                | String   | True     | 提币的网络手续费，此值根据区块链网络情况会动态调整              |
+| fee                | String   | True     | 提币的网络手续费，根据网络情况会动态调整              |
 | depositEnable      | Bool     | True     | 充值是否正常，True为正常，False为暂停                                            |
 | sda                | String   | False    | 暂停充值公告信息，如果有                                      |
 | suspendDepositDesc | String   | False    | 暂停充值描述信息，如果有                                      |
@@ -87,6 +87,27 @@ openapi: 'GET /'
                     "withdrawEnable": true
                 }
             ]
-        }
+        },
+        {
+            "tokenName": "ETH",
+            "fullName": "Ethereum",
+            "chainList": [
+                {
+                    "chainId": 102,
+                    "chainName": "Ethereum",
+                    "tokenId": 102002,
+                    "contractId": "",
+                    "tokenType": "Base",
+                    "decimals": 18,
+                    "displayDecimal": 6,
+                    "blockConfirmNum": 64,
+                    "minDepositAmount": "0.00001",
+                    "minWithdrawAmount": "0.00001",
+                    "fee": "0.00001",
+                    "depositEnable": true,
+                    "withdrawEnable": true
+                }
+            ]
+        },
     ]
 }
