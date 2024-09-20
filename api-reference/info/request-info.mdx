@@ -3,23 +3,56 @@ title: '请求说明'
 description: ''
 ---
 
-### 请求格式
+## 请求格式
 
 所有的 API 请求都是 RESTful,目前仅支持两种方法:GET 和 POST。
 
-*  **GET 请求**：所有的参数必须都在路径参数里。
-* **POST 请求**：所有参数通过 request body 以 payload 发送。
+*  **GET 请求**：所有的参数必须在路径参数`query string`中发送。
+* **POST 请求**：所有参数在`request body` 中发送。
 
-### 接入 URL
+## 接入 URL
 
 **https://api-beta.baaswallet.io/baaswallet/api/**
 
 
-### 接口鉴权
+## 接口鉴权
 
-- 所有的接口都需要 API-Key,在请求头中以 `X-BS-APIKEY` 字段传递；
+- 所有接口都需要API-Key,在HTTP请求头中以 `X-BS-APIKEY` 字段传递；
 - 每个 API-Key 可以对接口权限进行配置，默认所有接口不能访问。请求前请先确保 API-Key 先有对应的访问权限。
+- 对某单个节点请求的频率不能超出单位时间内该节点最大允许访问次数的限制。违反任何一个速率限制的时将返回错误代码：429。
 
-### 请求限频
 
-对某单个节点请求的频率不能超出单位时间内该节点最大允许访问次数的限制。违反任何一个速率限制的时将返回错误代码：429。
+## 请求示例
+
+`POST /v1/account/withdraw`
+
+| 参数名称   | 取值                                        |
+|------------|---------------------------------------------|
+| tokenName  | USDT                                        |
+| amount     | 500                                         |
+| chainName  | Ethereum                                    |
+| toAddress  | 0x9C903Cc6233ea0E9275452C13efe967a04EBe58b |
+| timestamp  | 1724985575933                               |
+
+API-Key: `1bn3sMGefeVVz74o52VjRA7Rr0gzLgv7XEodfikwZ9gw5ROqeZor8kQPUSDr3WXa`
+
+SecretKey: `9qsua3vT6TWVFrWBqzwym2brU0fCXMOwPgF0gzGFwgJBheikFC3LX7lZ9LFTZIQ1`
+
+### 请求Body
+将参数列表排列成一个字符串，用 `&` 分隔每个参数
+`
+tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933
+`
+
+### HMAC SHA256签名
+对上方String参数进行签名，详见 [签名认证页](/api-reference/info/sign-info)说明。
+`
+966174f21ae551a832a4830231e3d3dacf4ad326dc437d391ec525dd4fdaab44
+`
+
+### CURL调用
+```
+(HMAC SHA256)
+[linux]$ curl -H "X-BS-APIKEY: 1bn3sMGefeVVz74o52VjRA7Rr0gzLgv7XEodfikwZ9gw5ROqeZor8kQPUSDr3WXa" -H "Signature: 966174f21ae551a832a4830231e3d3dacf4ad326dc437d391ec525dd4fdaab44" -X POST 'https://api.baaswallet.io/baaswallet/api/v1/account/withdraw' -d 'tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933
+'
+```
