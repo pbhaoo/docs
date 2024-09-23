@@ -7,8 +7,8 @@ description: ''
 
 所有的 API 请求都是 RESTful,目前仅支持两种方法:GET 和 POST。
 
-*  **GET 请求**：所有的参数必须在路径参数`query string`中发送。
-* **POST 请求**：所有参数在`request body` 中发送。
+*  **GET 请求**：所有参数必须在`query string`中发送。
+* **POST 请求**：所有参数必须在`request body` 中发送。
 
 ## 接入 URL
 
@@ -51,8 +51,10 @@ tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C
 `
 
 ### CURL调用
-```
-(HMAC SHA256)
-[linux]$ curl -H "X-BS-APIKEY: 1bn3sMGefeVVz74o52VjRA7Rr0gzLgv7XEodfikwZ9gw5ROqeZor8kQPUSDr3WXa" -H "Signature: 966174f21ae551a832a4830231e3d3dacf4ad326dc437d391ec525dd4fdaab44" -X POST 'https://api.baaswallet.io/baaswallet/api/v1/account/withdraw' -d 'tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933
-'
+```bash
+curl
+-H "X-BS-APIKEY: 1bn3sMGefeVVz74o52VjRA7Rr0gzLgv7XEodfikwZ9gw5ROqeZor8kQPUSDr3WXa"
+-H "Signature: 966174f21ae551a832a4830231e3d3dacf4ad326dc437d391ec525dd4fdaab44"
+-X POST 'https://api.baaswallet.io/baaswallet/api/v1/account/withdraw'
+-d 'tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933'
 ```

@@ -10,21 +10,24 @@ description: ''
 
 ## 签名步骤
 <Steps>
-  <Step title="构建 Payload">
-    将参数列表排列成一个字符串，用 `&` 分隔每个参数，例如:  `tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933`
-  </Step>
+    <Step title="构建 Payload">
+        将参数列表排列成一个字符串，用 `&` 分隔每个参数，例如:
+        `tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933`
+    </Step>
 
-  <Step title="使用 HMAC SHA-256 算法对 Payload 进行签名">
-      ```
-[linux]$ echo -n "tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933" | openssl dgst -sha256 -hmac "9qsua3vT6TWVFrWBqzwym2brU0fCXMOwPgF0gzGFwgJBheikFC3LX7lZ9LFTZIQ1"
-```
+    <Step title="使用 HMAC SHA-256 算法对 Payload 进行签名">
+        ```bash
+        echo
+        -n "tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933"
+        | openssl dgst -sha256 -hmac "9qsua3vT6TWVFrWBqzwym2brU0fCXMOwPgF0gzGFwgJBheikFC3LX7lZ9LFTZIQ1"
+        ```
 
-  </Step>
+    </Step>
 
-  <Step title="将输出的签名编码为 16 进制格式">
-      `966174f21ae551a832a4830231e3d3dacf4ad326dc437d391ec525dd4fdaab44`
+    <Step title="将输出的签名编码为 16 进制格式">
+        `966174f21ae551a832a4830231e3d3dacf4ad326dc437d391ec525dd4fdaab44`
 
-  </Step>
+    </Step>
 
 </Steps>
 
@@ -32,64 +35,64 @@ description: ''
 
 下面是不同编程语言签名部分的Demo，供参考。
 
-<CodeGroup>
+    <CodeGroup>
 
-    ```python PYTHON
-import hmac
-import hashlib
-import requests
-import time
+        ```python PYTHON
+        import hmac
+        import hashlib
+        import requests
+        import time
 
-# 设置身份验证：
-access_key = '替换成您的 access_key'
-secret_key = '替换成您的 secret_key'
+        # 设置身份验证：
+        access_key = '替换成您的 access_key'
+        secret_key = '替换成您的 secret_key'
 
-# 设置请求参数：
-params = {
-    'tokenName': 'USDT',
-    'toAddress': '0x9C903Cc6233ea0E9275452C13efe967a04EBe58b',
-    'chainName': 'Ethereum',
-    'amount':  342.892,
-}
+        # 设置请求参数：
+        params = {
+        'tokenName': 'USDT',
+        'toAddress': '0x9C903Cc6233ea0E9275452C13efe967a04EBe58b',
+        'chainName': 'Ethereum',
+        'amount':  342.892,
+    }
 
-# 参数中添加时间戳：
-timestamp = int(time.time() * 1000) # 以毫秒为单位的 UNIX 时间戳
-params['timestamp'] = timestamp
+        # 参数中添加时间戳：
+        timestamp = int(time.time() * 1000) # 以毫秒为单位的 UNIX 时间戳
+        params['timestamp'] = timestamp
 
-# 参数中加签名：
-payload = '&'.join([f'{param}={value}' for param, value in params.items()])
-m = hmac.new(secret_key.encode("utf-8"), payload.encode("ASCII"), hashlib.sha256)
-signature = m.hexdigest()
-params['signature'] = signature
+        # 参数中加签名：
+        payload = '&'.join([f'{param}={value}' for param, value in params.items()])
+        m = hmac.new(secret_key.encode("utf-8"), payload.encode("ASCII"), hashlib.sha256)
+        signature = m.hexdigest()
+        params['signature'] = signature
 
-# 发送请求：
-headers = {
-    'X-BS-APIKEY': access_key,
-}
-response = requests.post(
-    'https://api.basswallet.io/api/v1/account/withdraw',
-    headers=headers,
-    data=params,
-)
-print(response.json())
-```
+        # 发送请求：
+        headers = {
+        'X-BS-APIKEY': access_key,
+    }
+        response = requests.post(
+        'https://api.basswallet.io/api/v1/account/withdraw',
+        headers=headers,
+        data=params,
+        )
+        print(response.json())
+        ```
 
-```json JAVA
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.io.OutputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+        ```json JAVA
+        import javax.crypto.Mac;
+        import javax.crypto.spec.SecretKeySpec;
+        import java.nio.charset.StandardCharsets;
+        import java.security.MessageDigest;
+        import java.util.HashMap;
+        import java.util.Map;
+        import java.util.stream.Collectors;
+        import java.net.HttpURLConnection;
+        import java.net.URL;
+        import java.io.OutputStream;
+        import java.io.BufferedReader;
+        import java.io.InputStreamReader;
 
-public class Main {
-    public static void main(String[] args) throws Exception {
+        public class Main {
+        public static void main(String[] args) throws Exception {
         // 设置身份验证
         String accessKey = "替换成您的 access_key";
         String secretKey = "替换成您的 secret_key";
@@ -107,8 +110,8 @@ public class Main {
 
         // 参数中加签名
         String payload = params.entrySet().stream()
-                .map(entry -> entry.getKey() + "=" + entry.getValue())
-                .collect(Collectors.joining("&"));
+        .map(entry -> entry.getKey() + "=" + entry.getValue())
+        .collect(Collectors.joining("&"));
         String signature = generateHMAC(secretKey, payload);
         params.put("signature", signature);
 
@@ -117,7 +120,7 @@ public class Main {
         System.out.println(response);
     }
 
-    private static String generateHMAC(String key, String data) throws Exception {
+        private static String generateHMAC(String key, String data) throws Exception {
         Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
         SecretKeySpec secret_key = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
         sha256_HMAC.init(secret_key);
@@ -125,12 +128,12 @@ public class Main {
         byte[] hash = sha256_HMAC.doFinal(data.getBytes(StandardCharsets.UTF_8));
         StringBuilder result = new StringBuilder();
         for (byte b : hash) {
-            result.append(String.format("%02x", b));
-        }
+        result.append(String.format("%02x", b));
+    }
         return result.toString();
     }
 
-    private static String sendPostRequest(String requestUrl, String accessKey, Map<String, String> params) throws Exception {
+        private static String sendPostRequest(String requestUrl, String accessKey, Map<String, String> params) throws Exception {
         URL url = new URL(requestUrl);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
@@ -138,65 +141,65 @@ public class Main {
         con.setDoOutput(true);
 
         String postData = params.entrySet().stream()
-                .map(entry -> entry.getKey() + "=" + entry.getValue())
-                .collect(Collectors.joining("&"));
+        .map(entry -> entry.getKey() + "=" + entry.getValue())
+        .collect(Collectors.joining("&"));
 
         try (OutputStream os = con.getOutputStream()) {
-            os.write(postData.getBytes(StandardCharsets.UTF_8));
-        }
+        os.write(postData.getBytes(StandardCharsets.UTF_8));
+    }
 
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuilder content = new StringBuilder();
         while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
-        }
+        content.append(inputLine);
+    }
 
         in.close();
         con.disconnect();
         return content.toString();
-```
+        ```
 
 ```php PHP
-<?php
+        <?php
 // 设置身份验证：
-$accessKey = '替换成您的 access_key';
-$secretKey = '替换成您的 secret_key';
+        $accessKey = '替换成您的 access_key';
+        $secretKey = '替换成您的 secret_key';
 
 // 设置请求参数：
-$params = [
-    'tokenName' => 'USDT',
-    'toAddress' => '0x9C903Cc6233ea0E9275452C13efe967a04EBe58b',
-    'chainName' => 'Ethereum',
-    'amount' => '342.892',
-];
+        $params = [
+        'tokenName' => 'USDT',
+        'toAddress' => '0x9C903Cc6233ea0E9275452C13efe967a04EBe58b',
+        'chainName' => 'Ethereum',
+        'amount' => '342.892',
+        ];
 
 // 参数中添加时间戳：
-$timestamp = round(microtime(true) * 1000); // 以毫秒为单位的 UNIX 时间戳
-$params['timestamp'] = $timestamp;
+        $timestamp = round(microtime(true) * 1000); // 以毫秒为单位的 UNIX 时间戳
+        $params['timestamp'] = $timestamp;
 
 // 参数中加签名：
-$payload = http_build_query($params);
-$signature = hash_hmac('sha256', $payload, $secretKey);
-$params['signature'] = $signature;
+        $payload = http_build_query($params);
+        $signature = hash_hmac('sha256', $payload, $secretKey);
+        $params['signature'] = $signature;
 
 // 发送请求：
-$ch = curl_init('https://api.basswallet.io/api/v1/account/withdraw');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'X-BS-APIKEY: ' . $accessKey,
-]);
+        $ch = curl_init('https://api.basswallet.io/api/v1/account/withdraw');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'X-BS-APIKEY: ' . $accessKey,
+        ]);
 
-$response = curl_exec($ch);
-curl_close($ch);
+        $response = curl_exec($ch);
+        curl_close($ch);
 
-echo $response;
-?>
-```
+        echo $response;
+        ?>
+        ```
 
-</CodeGroup>
+        </CodeGroup>
 
 
 
