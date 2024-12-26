@@ -27,12 +27,12 @@
     },
     {
       "name": "English",
-      "url": "https://docs-beta.basswallet.io/user-guide/overview/introduction"
+      "url": "https://docs.basswallet.com"
     }
   ],
   "topbarCtaButton": {
-    "name": "去后台",
-    "url": "https://console-beta.basswallet.io/"
+    "name": "官网",
+    "url": "https://basswallet.com/"
   },
   "tabs": [
     {
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "group": "指南",
+      "group": "接入指南",
       "pages": [
         {
           "group": "接入说明",
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "group": "方法",
+      "group": "请求方法",
       "pages": [
         {
           "group": "收款",

@@ -25,14 +25,14 @@ openapi: 'GET /'
 | **tokenName**           | `String` | 是    | 币种名称                                     |
 | **fullName**            | `String` | 是    | 币种全称。                                    |
 | **\<chainList\>**         | `Object` | 是    | 币种支持的提现/充值链的列表，一个代币可能在多个链上发行，本质上属于同一资产。   |
-| **chainId**             | `Int`    | 是    | 链的唯一 ID。                                  |
+| **chainId**             | `Integer`    | 是    | 链的唯一 ID。                                  |
 | **chainName**           | `String` | 是    | 链的唯一名称。                                   |
 | **tokenId**             | `String` | 是    | 币种的唯一 ID。                                 |
 | **contractId**          | `String` | 否    | 币种的合约 ID，仅智能合约代币（如 USDT）存在此值。             |
 | **tokenType**           | `String` | 是    | 币种类型，链主币时值为 `Base`，例如 Ethereum 链的主币为 ETH。 |
-| **decimals**            | `Int`    | 是    | 币种的精度。                                    |
-| **displayDecimal**      | `Int`    | 是    | 币种金额显示的最长小数位，提现金额受此限制。                    |
-| **blockConfirmNum**     | `Int`    | 是    | 安全上账所需的区块确认数，达到此值将解冻金额。                   |
+| **decimals**            | `Integer`    | 是    | 币种的精度。                                    |
+| **displayDecimal**      | `Integer`    | 是    | 币种金额显示的最长小数位，提现金额受此限制。                    |
+| **blockConfirmNum**     | `Integer`    | 是    | 安全上账所需的区块确认数，达到此值将解冻金额。                   |
 | **minDepositAmount**    | `String` | 是    | 最小充值数量，小于此值的充值将不会上账。                      |
 | **minWithdrawAmount**   | `String` | 是    | 最小提现数量，小于此值的金额将不能提现。                      |
 | **fee**                 | `String` | 是    | 提币的网络手续费，可能根据网络情况动态调整。                    |
