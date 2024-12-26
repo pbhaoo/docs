@@ -135,7 +135,7 @@
           ]
         },
         {
-          "group": "其它",
+          "group": "通用",
           "pages": [
             "api-reference/endpoint/info/token-list",
             "api-reference/endpoint/info/currency-list",
