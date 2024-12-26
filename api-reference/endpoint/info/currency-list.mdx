@@ -1,25 +1,25 @@
 ---
-title: '查询账户余额'
-description: '获取账户的币种余额信息'
+title: '支持的法定货币'
+description: '获取平台支持的法定货币列表'
 openapi: 'GET /'
 ---
 
 ### 接口地址  
-**GET** `/v1/account/balance`
+**GET** `/v1/common/supportedCurrencies`
 
 ### 请求参数
 
-| 名称       | 类型 | 是否必须 | 描述               |
+| 参数       | 类型 | 必须 | 描述               |
 |------------|----------|----------|--------------------|
-| timestamp  | Long     | True     | unix时间戳(毫秒)   |
+| **timestamp**  | `Long`     | 是     | unix时间戳(毫秒)   |
 
 ### 响应参数
 
-| 名称       | 类型 | 是否必须 | 描述         |
+| 参数       | 类型 | 必须 | 描述         |
 |------------|----------|----------|--------------|
-| tokenName  | String   | True     | 币       |
-| free       | String   | True     | 可用余额     |
-| freeze     | String   | True     | 冻结余额     |
+| **currency**  | `String`   | 是     | 法定货币简称      |
+| **fullName**       | `String`  | 是     | 全称     |
+| **symbol**     | `String`   | 是     | 货币符号     |
 
 ### 响应示例
 

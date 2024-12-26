@@ -1,19 +1,13 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "Bass Wallet",
-
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg",
-    "href":"https://beta.basswallet.io/"
+    "href": "https://beta.basswallet.io/"
   },
   "backgroundImage": "/images/background.png",
-  "background": {
-    "style": "windows"
-  },
-
   "favicon": "/logo/ico.png",
-
   "colors": {
     "primary": "#198CFF",
     "light": "#198CFF",
@@ -26,13 +20,12 @@
   "feedback": {
     "raiseIssue": false
   },
-
   "topbarLinks": [
     {
       "name": "客户支持",
       "url": "https://client.krosuite.com/?source=544948018013671424"
     },
-        {
+    {
       "name": "English",
       "url": "https://docs-beta.basswallet.io/user-guide/overview/introduction"
     }
@@ -42,7 +35,7 @@
     "url": "https://console-beta.basswallet.io/"
   },
   "tabs": [
-        {
+    {
       "name": "商户指南",
       "url": "user-guide"
     },
@@ -60,11 +53,9 @@
     }
   ],
   "anchors": [
-
   ],
-
   "navigation": [
-       {
+    {
       "group": "概况",
       "pages": [
         "user-guide/overview/introduction",
@@ -73,7 +64,7 @@
         "user-guide/overview/how-to-user"
       ]
     },
-     {
+    {
       "group": "基础信息",
       "pages": [
         "user-guide/basic-information/chains",
@@ -83,47 +74,80 @@
         "user-guide/basic-information/key_terms"
       ]
     },
-        {
+    {
       "group": "有用的文档",
       "pages": [
         "user-guide/useful-docs/webhook"
       ]
     },
-        {
-      "group": "接入说明",
-      "pages": [
-        "api-reference/info/api-key",
-        "api-reference/info/request-info",
-        "api-reference/info/respose-info",
-        "api-reference/info/sign-info",
-        "api-reference/info/webhook-explain",
-        "api-reference/info/sub-accounts",
-        "api-reference/info/params-eum",
-        "api-reference/info/error-code"
-      ]
-    },
-
     {
-      "group": "请求",
+      "group": "指南",
       "pages": [
-        "api-reference/endpoint/get-tokens",
-        "api-reference/endpoint/address-legal",
-        "api-reference/endpoint/generate-addr",
-        "api-reference/endpoint/withdraw",
-        "api-reference/endpoint/withdraw-query",
-        "api-reference/endpoint/get-balance",
-        "api-reference/endpoint/order-history"
-      ]
-    },
-
-    {
-      "group": "回调",
-      "pages": [
-        "api-reference/webhook/deposit",
-        "api-reference/webhook/withdraw"
-      ]
-    },
         {
+          "group": "接入说明",
+          "pages": [
+            "api-reference/info/api-key",
+            "api-reference/info/request-info",
+            "api-reference/info/respose-info",
+            "api-reference/info/sign-info"
+          ]
+        },
+        {
+          "group": "有用信息",
+          "pages": [
+            "api-reference/info/webhook-explain",
+            "api-reference/info/sub-accounts",
+            "api-reference/info/params-eum",
+            "api-reference/info/error-code"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "方法",
+      "pages": [
+        {
+          "group": "收款",
+          "pages": [
+            "api-reference/endpoint/receive/generate-addr",
+            "api-reference/endpoint/receive/deposit-webhook",
+            "api-reference/endpoint/receive/deposit-query",
+
+            "api-reference/endpoint/receive/create_payment",
+            "api-reference/endpoint/receive/payment-webhook",
+            "api-reference/endpoint/receive/payment-query"
+          ]
+        },
+        {
+          "group": "付款",
+          "pages": [
+            "api-reference/endpoint/withdraw/withdraw",
+            "api-reference/endpoint/withdraw/withdraw-query",
+              "api-reference/endpoint/withdraw/withdraw-webhook"
+
+          ]
+        },
+        {
+          "group": "账户",
+          "pages": [
+            "api-reference/endpoint/account/get-balance",
+            "api-reference/endpoint/account/order-history"
+          ]
+        },
+        {
+          "group": "其它",
+          "pages": [
+            "api-reference/endpoint/info/token-list",
+            "api-reference/endpoint/info/currency-list",
+            "api-reference/endpoint/info/fiat-to-fiat",
+            "api-reference/endpoint/info/fiat-to-crypto",
+            "api-reference/endpoint/info/crypto-to-fiat",
+            "api-reference/endpoint/info/address-legal"
+          ]
+        }
+      ]
+    },
+    {
       "group": "FAQs",
       "pages": [
         "questions/questions/webhook",
@@ -137,9 +161,7 @@
         "update-log/api-update/logs"
       ]
     }
-
   ],
-
   "footerSocials": {
     "x": "https://x.com/basswallet",
     "github": "https://github.com/basswallet"

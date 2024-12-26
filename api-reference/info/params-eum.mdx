@@ -6,22 +6,25 @@ description: ''
 
 ### 订单状态(status)
 
-| 值               | 说明                                   |
-|------------------|----------------------------------------|
-| WaitingReview    | 待审核                                 |
-| ReviewRejected   | 审核驳回                               |
-| ReviewPassed     | 审核通过                               |
-| WaitingProcessing| 排队等待中                             |
-| Processing       | 正在处理该笔订单                       |
-| WaitingPackaging | 成功提交到链上，等待矿工打包           |
-| WaitingConfirmation| 打包成功，等待区块数的确认          |
-| Success          | 区块数确认成功，订单完成               |
-| Fail             | 区块数确认失败                         |
-| Canceled         | 订单被取消                             |
+| 值                    | 说明             |
+|----------------------|----------------|
+| **AwaitingReview**       | 待审核            |
+| **ReviewDeclined**       | 审核驳回           |
+| **ReviewApproved**       | 审核通过           |
+| **Processing**           | 处理中            |
+| **AwaitingPayment**      | 待支付            |
+| **AwaitingPackaging**    | 待打包(等待矿工打包交易)  |
+| **AwaitingConfirmation** | 待确认(需一定区块数的确认) |
+| **Success**              | 成功             |
+| **Failed**               | 失败             |
+| **Underpaid**            | 金额不足           |
+| **Expired**              | 订单过期           |
+| **Cancelled**            | 订单取消           |
 
 ### 回调类型(webhookType)
 
-| 值       | 说明                       |
-|----------|----------------------------|
-| Deposit  | 充值订单的回调             |
-| Withdraw | 提现订单的回调             |
+| 值        | 说明      |
+|----------|---------|
+| **Deposit**  | 地址充值订单的回调 |
+| **Payment**  | 创建付款订单的回调 |
+| **Withdraw** | 提现订单的回调 |
