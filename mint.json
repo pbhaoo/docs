@@ -23,7 +23,7 @@
   "topbarLinks": [
     {
       "name": "客户支持",
-      "url": "https://client.krosuite.com/?source=544948018013671424"
+      "url": "https://t.me/basswallet_api_support"
     },
     {
       "name": "English",
@@ -137,12 +137,12 @@
         {
           "group": "通用",
           "pages": [
-            "api-reference/endpoint/info/token-list",
-            "api-reference/endpoint/info/currency-list",
-            "api-reference/endpoint/info/fiat-to-fiat",
-            "api-reference/endpoint/info/fiat-to-crypto",
-            "api-reference/endpoint/info/crypto-to-fiat",
-            "api-reference/endpoint/info/address-legal"
+            "api-reference/endpoint/common/token-list",
+            "api-reference/endpoint/common/currency-list",
+            "api-reference/endpoint/common/fiat-to-fiat",
+            "api-reference/endpoint/common/fiat-to-crypto",
+            "api-reference/endpoint/common/crypto-to-fiat",
+            "api-reference/endpoint/common/address-legal"
           ]
         }
       ]

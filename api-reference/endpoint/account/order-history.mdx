@@ -1,5 +1,5 @@
 ---
-title: '查询账户订单历史'
+title: '查询订单历史'
 description: '获取充值或提现的历史订单信息,可用于对账。'
 openapi: 'GET /'
 ---
@@ -12,7 +12,7 @@ openapi: 'GET /'
 | 参数         | 类型      | 是否必填 | 描述                                                                 |
 |--------------|-----------|----------|----------------------------------------------------------------------|
 | **type**      | `String`  | 是       | 操作类型，支持的取值：`deposit`（充值）或 `withdraw`（提现）。           |
-| **timestamp** | `Long`    | 是       | 请求时间的 Unix 时间戳（毫秒）。                                        |
+| **timestamp** | `Long`    | 是       | UNIX 时间戳（毫秒）                                        |
 | **tokenName** | `String`  | 否       | 币种名称，默认为查询全部币种。                                           |
 | **startTime** | `Long`    | 否       | 查询起始时间戳，默认为当前时间 30 天前。                                    |
 | **endTime**   | `Long`    | 否       | 查询结束时间戳，默认为当前时间戳。                                        |
@@ -76,8 +76,8 @@ openapi: 'GET /'
                         "networkFee": "2",
                         "platformFee": "0.1",
                         "totalFee": "2.1",
-                        "createdTime": "2024-09-09 03:28:37",
-                        "completeTime": "2024-09-09 03:29:37",
+                        "createdTime": 1729475874520,
+                        "completeTime": 1729475874520,
                         "status": "Success"
                     }
         ]

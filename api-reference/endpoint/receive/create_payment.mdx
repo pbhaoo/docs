@@ -20,7 +20,7 @@ openapi: 'POST /'
 | **tokenName**       | `String` | 是  | 支付的币种名称，例如 `USDT`、`BTC` 等。                |
 | **chainName**       | `String` | 是  | 支付所使用的区块链主网名称，例如 `Ethereum`、`Bsc` 等。      |
 | **businessId**      | `String` | 否  | 商户自定义的订单唯一标识，支持字母或数字组合，最大长度为 32 字符。       |
-| **timestamp**       | `Long`   | 是  | UNIX 时间戳（毫秒）。                             |
+| **timestamp**       | `Long`   | 是  | UNIX 时间戳（毫秒）                            |
 | **displayInfo**     | `String` | 否  | 商户自定义的订单说明，将显示在支付页面中，便于用户识别订单信息。          |
 | **autoReturn**      | `String` | 否  | 支付成功后是否自动跳转回商户页面，默认为 `False`。             |
 | **returnUrl**       | `String` | 否  | 支付完成后重定向的页面 URL，仅支持 `http` 或 `https` 开头。  |
