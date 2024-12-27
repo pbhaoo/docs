@@ -23,7 +23,7 @@ openapi: 'GET /'
 | **id**           | `String` | 是  | 平台定义的订单唯一标识。                   |
 | **businessId**   | `String` | 是  | 商户自定义的业务 ID。                   |
 | **redirectUrl**  | `String` | 是  | 支付完成后重定向的页面URL。                |
-| **amount**       | `Double` | 否  | 商户定义的收款金额(如果是不固定金额，此值为空)。      |
+| **amount**       | `String` | 否  | 商户定义的收款金额(如果是不固定金额，此值为空)。      |
 | **tokenName**    | `String` | 是  | 商户定义的收款货币名称，例如 `USDT`、`BTC` 等。 |
 | **chainName**    | `String` | 是  | 区块链网络名称，例如 `Ethereum`、`Bsc` 等。 |
 | **address**      | `String` | 是  | 收款地址，用于接收支付的区块链地址。             |
@@ -55,7 +55,7 @@ openapi: 'GET /'
         "blockHigh": 50025541,
         "networkFee": "2",
         "platformFee": "0.15",
-        "createdTime": "2024-09-06 10:36:33",
-        "completeTime": "2024-09-06 10:37:32"
+        "createdTime": 1729475874520,
+        "completeTime": 1729475874520
     }
 }
