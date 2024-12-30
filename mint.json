@@ -4,7 +4,7 @@
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg",
-    "href": "https://beta.basswallet.io/"
+    "href": "https://basswallet.com/zh"
   },
   "backgroundImage": "/images/background.png",
   "favicon": "/logo/ico.png",
@@ -22,7 +22,7 @@
   },
   "topbarLinks": [
     {
-      "name": "客户支持",
+      "name": "技术支持",
       "url": "https://t.me/basswallet_api_support"
     },
     {
