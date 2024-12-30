@@ -138,11 +138,11 @@
           "group": "通用",
           "pages": [
             "api-reference/endpoint/common/token-list",
+            "api-reference/endpoint/common/address-legal",
             "api-reference/endpoint/common/currency-list",
             "api-reference/endpoint/common/fiat-to-fiat",
             "api-reference/endpoint/common/fiat-to-crypto",
-            "api-reference/endpoint/common/crypto-to-fiat",
-            "api-reference/endpoint/common/address-legal"
+            "api-reference/endpoint/common/crypto-to-fiat"
           ]
         }
       ]

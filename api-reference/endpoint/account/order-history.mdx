@@ -11,7 +11,7 @@ openapi: 'GET /'
 
 | 参数         | 类型      | 是否必填 | 描述                                                                 |
 |--------------|-----------|----------|----------------------------------------------------------------------|
-| **type**      | `String`  | 是       | 操作类型，支持的取值：`deposit`（充值）或 `withdraw`（提现）。           |
+| **type**      | `String`  | 是       | 订单类型，支持的取值：`Deposit`、`Payment`、`Withdraw`。           |
 | **timestamp** | `Long`    | 是       | UNIX 时间戳（毫秒）                                        |
 | **tokenName** | `String`  | 否       | 币种名称，默认为查询全部币种。                                           |
 | **startTime** | `Long`    | 否       | 查询起始时间戳，默认为当前时间 30 天前。                                    |
@@ -19,9 +19,20 @@ openapi: 'GET /'
 
 **注意**: 查询的最大时间范围为 30 天，即：`endTime - startTime <= 30 Days`。
 
+<Tip>
+
+目前有三个订单类型，不同类型响应参数不太一样：
+
+    `Deposit`:固定地址进行充值的收款订单。
+
+    `Payment`:通过创建付款订单链接进行收款的订单，需通过状态判断订单的完成情况。
+
+    `Withdraw`:提现订单。
+
+</Tip>
 ---
 
-### 响应参数（充值）
+### 响应参数->`deposit`
 
 | 参数           | 类型      | 是否必填 | 描述                                    |
 |----------------|-----------|----------|-----------------------------------------|
@@ -31,14 +42,34 @@ openapi: 'GET /'
 | **amount**     | `String`  | 是       | 充值的数量                              |
 | **fromAddress**| `String`  | 是       | 发送方地址             |
 | **toAddress**  | `String`  | 是       | 接收方地址              |
-| **txId**       | `String`  | 是       | 链上交易哈希     |
-| **createdTime**| `String`  | 是       | 创建时间(UTC)                        |
-| **completeTime**| `String` | 是       | 完成时间(UTC)                     |
+| **txHash**       | `String`  | 是       | 链上交易哈希     |
+| **createdTime**| `Long`  | 是       | 创建时间(UTC)                        |
+| **completeTime**| `Long` | 是       | 完成时间(UTC)                     |
 | **status**     | `String`  | 是       | 订单状态，详见“枚举定义”中的状态解释。        |
 
 ---
 
-### 响应参数（提现）
+### 响应参数->`payment`
+
+| 参数           | 类型      | 是否必填 | 描述                                    |
+|----------------|-----------|----------|-----------------------------------------|
+| **id**         | `String`  | 是       | 订单 ID              |
+| **businessId** | `String`  | 否       | 商户自定义的订单 ID        |
+| **chainName**  | `String`  | 是       | 区块链名            |
+| **tokenName**  | `String`  | 是       | 币种名          |
+| **amount**     | `String`  | 否       | 商户设定的支付金额                             |
+| **amountActual**     | `String`  | 否       | 实付金额                            |
+| **fromAddress**| `String`  | 否       | 发送方地址             |
+| **toAddress**  | `String`  | 是       | 接收方地址              |
+| **txHash**       | `String`  | 否       | 链上交易哈希     |
+| **createdTime**| `Long`  | 是       | 创建时间(UTC)                        |
+| **expiryTime**| `Long` | 是       | 过期时间(UTC)                     |
+| **completeTime**| `Long` | 否       | 完成时间(UTC)                     |
+| **status**     | `String`  | 是       | 订单状态，详见“枚举定义”中的状态解释。        |
+
+---
+
+### 响应参数->`withdraw`
 
 | 参数           | 类型      | 是否必填 | 描述                                    |
 |----------------|-----------|----------|-----------------------------------------|
@@ -48,12 +79,12 @@ openapi: 'GET /'
 | **tokenName**  | `String`  | 是       | 币种名称          |
 | **amount**     | `String`  | 是       | 提现的数量                              |
 | **toAddress**  | `String`  | 是       | 接收方地址              |
-| **txId**       | `String`  | 是       | 链上交易哈希    |
+| **txHash**       | `String`  | 是       | 链上交易哈希    |
 | **networkFee** | `String`  | 是       | 网络手续费    |
 | **platformFee**| `String`  | 是       | 平台佣金，表示平台收取的服务费用。            |
 | **totalFee**   | `String`  | 是       | 总费用，包括网络手续费与平台佣金之和。          |
-| **createdTime**| `String`  | 是       | 创建时间(UTC)                        |
-| **completeTime**| `String` | 是       | 完成时间(UTC)                        |
+| **createdTime**| `Long`  | 是       | 创建时间(UTC)                        |
+| **completeTime**| `Long` | 是       | 完成时间(UTC)                        |
 | **status**     | `String`  | 是       | 订单状态，详见“枚举定义”中的状态解释。        |
 ### 响应示例
 
@@ -97,7 +128,7 @@ openapi: 'GET /'
                         "amount": "20.00",
                         "fromAddress": "TKjLDbk7LC9NXzRBCYahKa8pzMHRfahJjn",
                         "toAddress": "TSWoFUDouEfFdGrDEvd6S6WBhQsLKs7Kqo",
-                        "txId": "5efd31cca2c3e1b8a0812aa9da58dddb4c8f8421ede1778c18fe3cee6aa586ae",
+                        "txHash": "5efd31cca2c3e1b8a0812aa9da58dddb4c8f8421ede1778c18fe3cee6aa586ae",
                         "createdTime": 1729475874520,
                         "completeTime": 1729475874520,
                         "status": "Success"

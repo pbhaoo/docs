@@ -27,7 +27,7 @@ openapi: 'GET /'
 | **toAddress**   | `String` | 是  | 接受方地址                 |
 | **status**      | `String` | 是  | 订单状态，表示订单当前的处理状态     |
 | **txHash**      | `String` | 是  | 链上交易哈希 |
-| **createdDate** | `Long`   | 是  | 创建时间（UTC）        |
+| **createdTime** | `Long`   | 是  | 创建时间（UTC）        |
 
 ---
 
@@ -45,13 +45,7 @@ openapi: 'GET /'
         "toAddress": "TKjLDbk7LC9NXzRBCYahKa8pzMHRfahJjn",
         "amount": "200.15",
         "status": "Success",
-        "businessId": "",
-        "tag": "",
-        "txId": "56a925bb3a90badb770f227e34a61737327e0eded81190e048c23ab6efa8ec9b",
-        "blockHigh": 50025541,
-        "networkFee": "2",
-        "platformFee": "0.15",
+        "txHash": "56a925bb3a90badb770f227e34a61737327e0eded81190e048c23ab6efa8ec9b",
         "createdTime": 1729475874520,
-        "completeTime": 1729475874520
     }
 }

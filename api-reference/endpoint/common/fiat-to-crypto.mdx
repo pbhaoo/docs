@@ -1,6 +1,6 @@
 ---
-title: '法定货币转换为加密货币'
-description: '按照实时汇率，将法定货币转换成加密货币'
+title: '法定货币计算为加密货币'
+description: '按照实时汇率，将一定金额的法定货币转换成加密货币金额'
 openapi: 'POST /'
 ---
 
@@ -14,7 +14,7 @@ openapi: 'POST /'
 | **inCurrency** | `String` | 是     | 原始法定货币的币种代码（如 USD、EUR 等）。         |
 | **inAmount**   | `String` | 是     | 需要进行转换的金额。                             |
 | **outCurrency**| `String` | 是     | 目标加密货币的币种代码（如 USDT、ETH 等）。         |
-| **timestamp**  | `Long`   | 是     | UUNIX 时间戳（毫秒）        |
+| **timestamp**  | `Long`   | 是     | UNIX 时间戳（毫秒）        |
 
 
 ### 响应参数
