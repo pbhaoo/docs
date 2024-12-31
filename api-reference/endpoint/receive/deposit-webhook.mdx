@@ -13,7 +13,7 @@ openapi: 'POST /'
 
 ### 请求参数
 
-| 参数                  | 数据类型      | 是否必填 | 描述                    |
+| 参数                  | 数据类型      | 必填 | 描述                    |
 |---------------------|-----------|------|-----------------------|
 | **webhookType**     | `String`  | 是    | 回调类型，这里为 `Deposit`。   |
 | **id**              | `String`  | 是    | 订单ID                  |
@@ -26,7 +26,8 @@ openapi: 'POST /'
 | **amount**          | `String`  | 是    | 充值的数量                 |
 | **blockHigh**       | `Integer` | 是    | 交易所在的区块高度。            |
 | **blockConfirmNum** | `Integer` | 是    | 回调时的区块确认数，表示交易被确认的次数。 |
-| **createdTime**     | `String`  | 是    | 创建时间（UTC 时间）。         |
+| **createdTime**     | `Long`  | 是    | 创建时间（UTC 时间）         |
+| **timestamp**     | `Long`  | 是    | UNIX 时间戳（毫秒）         |
 
 ### 请求示例
 
@@ -37,7 +38,7 @@ openapi: 'POST /'
     "blockConfirmNum": 1,
     "blockHigh": 51259775,
     "chainName": "Tron",
-    "createdTime": "2024-10-21 02:13:51",
+    "createdTime": 1729476831813,
     "fromAddress": "TKjLDbk7LC9NXzRBCYahKa8pzMHRfahJjn",
     "id": "603277493897662464",
     "status": "WaitingConfirmation",

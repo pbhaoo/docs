@@ -26,6 +26,7 @@ openapi: 'POST /'
 | **amount**          | `String`  | 否    | 设定的支付金额(有设定才有此值)                 |
 | **amountActual**          | `String`  | 是    | 实际支付的金额                |
 | **businessId** | `String` | 否    | 商户自定义的订单ID |
+| **timestamp**     | `Long`  | 是    | UNIX 时间戳（毫秒）         |
 
 ### 请求参数(当订单逾期时)
 
@@ -35,22 +36,23 @@ openapi: 'POST /'
 | **id**          | `String` | 是  | 订单ID                |
 | **businessId**  | `String` | 否  | 商户自定义的订单ID(如果有)     |
 | **status**      | `String` | 是  | 订单状态，这里为`Expired`      |
+| **timestamp**     | `Long`  | 是    | UNIX 时间戳（毫秒）         |
 
 ### 请求示例
 
 
 ```json
 {
-    "amount": "10",
+    "amount": "10.88",
+    "amountActual": "10.88",
     "blockConfirmNum": 1,
     "blockHigh": 51259775,
     "chainName": "Tron",
-    "createdTime": 1729476831813,
     "fromAddress": "TKjLDbk7LC9NXzRBCYahKa8pzMHRfahJjn",
     "id": "603277493897662464",
     "status": "WaitingConfirmation",
     "toAddress": "TTSgF6XEd1TbEH3fPuC4Zypn7UZsxetEcH",
-    "tokenName": "TRX",
+    "tokenName": "USDT",
     "txHash": "a43d0157e327da5fe5912e5ff91939a4c142cfa1ebedea0a40b4e118d35425d2",
     "webhookType": "Payment",
     "timestamp": 1729476831813
