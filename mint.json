@@ -122,9 +122,8 @@
           "group": "付款",
           "pages": [
             "api-reference/endpoint/withdraw/withdraw",
-            "api-reference/endpoint/withdraw/withdraw-query",
-              "api-reference/endpoint/withdraw/withdraw-webhook"
-
+            "api-reference/endpoint/withdraw/withdraw-webhook",
+            "api-reference/endpoint/withdraw/withdraw-query"
           ]
         },
         {

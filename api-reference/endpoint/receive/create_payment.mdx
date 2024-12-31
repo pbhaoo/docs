@@ -1,6 +1,6 @@
 ---
 title: '创建付款'
-description: '创建一笔付款订单，用于收款业务。'
+description: '创建一笔付款订单，生成付款Url，用于收款业务。'
 openapi: 'POST /'
 ---
 
@@ -16,11 +16,11 @@ openapi: 'POST /'
 
 | 参数                  | 类型       | 必填 | 描述                                        |
 |---------------------|----------|----|-------------------------------------------|
-| **amount**          | `String` | 否  | 支付的金额。当为空时即不限定用户的付款金额。                                    |
+| **amount**          | `String` | 否  | 支付的金额。当为空时即不限定用户的付款金额。                    |
 | **tokenName**       | `String` | 是  | 支付的币种名称，例如 `USDT`、`BTC` 等。                |
 | **chainName**       | `String` | 是  | 支付所使用的区块链主网名称，例如 `Ethereum`、`Bsc` 等。      |
 | **businessId**      | `String` | 否  | 商户自定义的订单唯一标识，支持字母或数字组合，最大长度为 32 字符。       |
-| **timestamp**       | `Long`   | 是  | UNIX 时间戳（毫秒）                            |
+| **timestamp**       | `Long`   | 是  | UNIX 时间戳（毫秒）                              |
 | **displayInfo**     | `String` | 否  | 商户自定义的订单说明，将显示在支付页面中，便于用户识别订单信息。          |
 | **autoReturn**      | `String` | 否  | 支付成功后是否自动跳转回商户页面，默认为 `False`。             |
 | **returnUrl**       | `String` | 否  | 支付完成后重定向的页面 URL，仅支持 `http` 或 `https` 开头。  |
@@ -30,21 +30,21 @@ openapi: 'POST /'
 
 ### 响应参数
 
-| 参数              | 类型       | 必须 | 描述            |
-|-----------------|----------|----|---------------|
-| **createdDate** | `long`   | 是  | 创建时间（UTC）。 |
+| 参数              | 类型       | 必须 | 描述          |
+|-----------------|----------|----|-------------|
+| **createdDate** | `long`   | 是  | 创建时间（UTC）。  |
 | **expiryDate**  | `long`   | 是  | 过期时间（UTC）   |
-| **redirectUrl** | `string` | 是  | 重定向的支付页面。     |
-| **status**      | `string` | 是  | 订单状态。         |
-| **id**          | `string` | 是  | 平台定义的订单ID。    |
-| **amount**      | `Double` | 否  | 商户定义的收款数量。    |
-| **tokenName**   | `string` | 是  | 商户定义的收款货币。    |
-| **chainName**   | `string` | 是  | 链名。           |
-| **chainId**     | `Double` | 是  | 链 ID。         |
-| **address**     | `string` | 是  | 收款地址。         |
-| **businessId**  | `string` | 否  | 商户自定义的业务ID。   |
-| **returnUrl**   | `string` | 否  | 商户定义的返回页面。    |
-| **displayInfo** | `string` | 否  | 商户自定义的显示信息。   |
+| **redirectUrl** | `string` | 是  | 重定向的支付页面。   |
+| **status**      | `string` | 是  | 订单状态。       |
+| **id**          | `string` | 是  | 平台定义的订单ID。  |
+| **amount**      | `Double` | 否  | 商户定义的收款数量。  |
+| **tokenName**   | `string` | 是  | 商户定义的收款货币。  |
+| **chainName**   | `string` | 是  | 链名。         |
+| **chainId**     | `Double` | 是  | 链 ID。       |
+| **address**     | `string` | 是  | 收款地址。       |
+| **businessId**  | `string` | 否  | 商户自定义的业务ID。 |
+| **returnUrl**   | `string` | 否  | 商户定义的返回页面。  |
+| **displayInfo** | `string` | 否  | 商户自定义的显示信息。 |
 
 ### 响应示例
 

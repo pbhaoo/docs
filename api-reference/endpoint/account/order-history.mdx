@@ -1,6 +1,6 @@
 ---
 title: '查询订单历史'
-description: '获取充值或提现的历史订单信息,可用于对账。'
+description: '获取充值或提现的历史订单信息,可用于对账业务。'
 openapi: 'GET /'
 ---
 
@@ -34,58 +34,58 @@ openapi: 'GET /'
 
 ### 响应参数->`deposit`
 
-| 参数           | 类型      | 是否必填 | 描述                                    |
-|----------------|-----------|----------|-----------------------------------------|
-| **id**         | `String`  | 是       | 订单 ID              |
-| **chainName**  | `String`  | 是       | 区块链名称             |
-| **tokenName**  | `String`  | 是       | 币种名称           |
-| **amount**     | `String`  | 是       | 充值的数量                              |
-| **fromAddress**| `String`  | 是       | 发送方地址             |
-| **toAddress**  | `String`  | 是       | 接收方地址              |
-| **txHash**       | `String`  | 是       | 链上交易哈希     |
-| **createdTime**| `Long`  | 是       | 创建时间(UTC)                        |
-| **completeTime**| `Long` | 是       | 完成时间(UTC)                     |
-| **status**     | `String`  | 是       | 订单状态，详见“枚举定义”中的状态解释。        |
+| 参数               | 类型       | 是否必填 | 描述                   |
+|------------------|----------|------|----------------------|
+| **id**           | `String` | 是    | 订单 ID                |
+| **chainName**    | `String` | 是    | 区块链名称                |
+| **tokenName**    | `String` | 是    | 币种名称                 |
+| **amount**       | `String` | 是    | 充值的数量                |
+| **fromAddress**  | `String` | 是    | 发送方地址                |
+| **toAddress**    | `String` | 是    | 接收方地址                |
+| **txHash**       | `String` | 是    | 链上交易哈希               |
+| **createdTime**  | `Long`   | 是    | 创建时间(UTC)            |
+| **completeTime** | `Long`   | 是    | 完成时间(UTC)            |
+| **status**       | `String` | 是    | 订单状态，详见“枚举定义”中的状态解释。 |
 
 ---
 
 ### 响应参数->`payment`
 
-| 参数           | 类型      | 是否必填 | 描述                                    |
-|----------------|-----------|----------|-----------------------------------------|
-| **id**         | `String`  | 是       | 订单 ID              |
-| **businessId** | `String`  | 否       | 商户自定义的订单 ID        |
-| **chainName**  | `String`  | 是       | 区块链名            |
-| **tokenName**  | `String`  | 是       | 币种名          |
-| **amount**     | `String`  | 否       | 商户设定的支付金额                             |
-| **amountActual**     | `String`  | 否       | 实付金额                            |
-| **fromAddress**| `String`  | 否       | 发送方地址             |
-| **toAddress**  | `String`  | 是       | 接收方地址              |
-| **txHash**       | `String`  | 否       | 链上交易哈希     |
-| **createdTime**| `Long`  | 是       | 创建时间(UTC)                        |
-| **expiryTime**| `Long` | 是       | 过期时间(UTC)                     |
-| **completeTime**| `Long` | 否       | 完成时间(UTC)                     |
-| **status**     | `String`  | 是       | 订单状态，详见“枚举定义”中的状态解释。        |
+| 参数               | 类型       | 是否必填 | 描述                   |
+|------------------|----------|------|----------------------|
+| **id**           | `String` | 是    | 订单 ID                |
+| **businessId**   | `String` | 否    | 商户自定义的订单 ID          |
+| **chainName**    | `String` | 是    | 区块链名                 |
+| **tokenName**    | `String` | 是    | 币种名                  |
+| **amount**       | `String` | 否    | 商户设定的支付金额            |
+| **amountActual** | `String` | 否    | 实付金额                 |
+| **fromAddress**  | `String` | 否    | 发送方地址                |
+| **toAddress**    | `String` | 是    | 接收方地址                |
+| **txHash**       | `String` | 否    | 链上交易哈希               |
+| **createdTime**  | `Long`   | 是    | 创建时间(UTC)            |
+| **expiryTime**   | `Long`   | 是    | 过期时间(UTC)            |
+| **completeTime** | `Long`   | 否    | 完成时间(UTC)            |
+| **status**       | `String` | 是    | 订单状态，详见“枚举定义”中的状态解释。 |
 
 ---
 
 ### 响应参数->`withdraw`
 
-| 参数           | 类型      | 是否必填 | 描述                                    |
-|----------------|-----------|----------|-----------------------------------------|
-| **id**         | `String`  | 是       | 订单 ID             |
-| **businessId** | `String`  | 否       | 商户自定义的订单 ID        |
-| **chainName**  | `String`  | 是       | 区块链名称            |
-| **tokenName**  | `String`  | 是       | 币种名称          |
-| **amount**     | `String`  | 是       | 提现的数量                              |
-| **toAddress**  | `String`  | 是       | 接收方地址              |
-| **txHash**       | `String`  | 是       | 链上交易哈希    |
-| **networkFee** | `String`  | 是       | 网络手续费    |
-| **platformFee**| `String`  | 是       | 平台佣金，表示平台收取的服务费用。            |
-| **totalFee**   | `String`  | 是       | 总费用，包括网络手续费与平台佣金之和。          |
-| **createdTime**| `Long`  | 是       | 创建时间(UTC)                        |
-| **completeTime**| `Long` | 是       | 完成时间(UTC)                        |
-| **status**     | `String`  | 是       | 订单状态，详见“枚举定义”中的状态解释。        |
+| 参数               | 类型       | 是否必填 | 描述                   |
+|------------------|----------|------|----------------------|
+| **id**           | `String` | 是    | 订单 ID                |
+| **businessId**   | `String` | 否    | 商户自定义的订单 ID          |
+| **chainName**    | `String` | 是    | 区块链名称                |
+| **tokenName**    | `String` | 是    | 币种名称                 |
+| **amount**       | `String` | 是    | 提现的数量                |
+| **toAddress**    | `String` | 是    | 接收方地址                |
+| **txHash**       | `String` | 是    | 链上交易哈希               |
+| **networkFee**   | `String` | 是    | 网络手续费                |
+| **platformFee**  | `String` | 是    | 平台佣金，表示平台收取的服务费用。    |
+| **totalFee**     | `String` | 是    | 总费用，包括网络手续费与平台佣金之和。  |
+| **createdTime**  | `Long`   | 是    | 创建时间(UTC)            |
+| **completeTime** | `Long`   | 是    | 完成时间(UTC)            |
+| **status**       | `String` | 是    | 订单状态，详见“枚举定义”中的状态解释。 |
 ### 响应示例
 
 <CodeGroup>

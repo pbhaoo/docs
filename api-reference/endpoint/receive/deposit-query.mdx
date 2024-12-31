@@ -1,5 +1,5 @@
 ---
-title: '查询地址充值订单'
+title: '查询订单(地址充值)'
 description: '通过ID查询地址充值订单的详细信息。'
 openapi: 'GET /'
 ---
@@ -17,16 +17,16 @@ openapi: 'GET /'
 
 ### 响应参数
 
-| 参数              | 类型       | 必须 | 描述                    |
-|-----------------|----------|----|-----------------------|
-| **id**          | `String` | 是  | 平台定义的订单唯一标识          |
-| **amount**      | `String` | 是  | 用户的充值金额               |
-| **tokenName**   | `String` | 是  | 充值的币种                 |
-| **chainName**   | `String` | 是  | 充值的网络                 |
-| **fromAddress** | `String` | 是  | 发送方地址                 |
-| **toAddress**   | `String` | 是  | 接受方地址                 |
-| **status**      | `String` | 是  | 订单状态，表示订单当前的处理状态     |
-| **txHash**      | `String` | 是  | 链上交易哈希 |
+| 参数              | 类型       | 必须 | 描述               |
+|-----------------|----------|----|------------------|
+| **id**          | `String` | 是  | 平台定义的订单唯一标识      |
+| **amount**      | `String` | 是  | 用户的充值金额          |
+| **tokenName**   | `String` | 是  | 充值的币种            |
+| **chainName**   | `String` | 是  | 充值的网络            |
+| **fromAddress** | `String` | 是  | 发送方地址            |
+| **toAddress**   | `String` | 是  | 接受方地址            |
+| **status**      | `String` | 是  | 订单状态，表示订单当前的处理状态 |
+| **txHash**      | `String` | 是  | 链上交易哈希           |
 | **createdTime** | `Long`   | 是  | 创建时间（UTC）        |
 
 ---
