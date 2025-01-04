@@ -5,7 +5,7 @@ description: ''
 
 - 目前除了通用接口，所有其它接口都规定需要进行签名验证，以保证请求数据不会被恶意篡改；
 - 如果需要签名，签名应当在HTTP请求头中以`Signature`字段传递；
-- 签名接口都需要传递`timestamp`参数 ，其值应当是请求发送时刻的UNIX时间戳（毫秒）。服务器收到请求时会判断请求中的时间戳，如果是`5000`毫秒之前发出的，则请求会被认为无效。
+- 签名接口都需要传递`timestamp`参数 ，其值应当是请求发送时刻的UNIX时间戳（毫秒）。服务器收到请求时会判断请求中的时间戳，如果是`10`秒之前发出的，则请求会被认为无效。
 
 
 ## 签名步骤
@@ -63,14 +63,14 @@ description: ''
         payload = '&'.join([f'{param}={value}' for param, value in params.items()])
         m = hmac.new(secret_key.encode("utf-8"), payload.encode("ASCII"), hashlib.sha256)
         signature = m.hexdigest()
-        params['signature'] = signature
 
         # 发送请求：
         headers = {
-        'X-BS-APIKEY': access_key,
+        'API-Access-Key': access_key,
+        'Signature':signature
     }
         response = requests.post(
-        'https://api.basswallet.io/api/v1/account/withdraw',
+        'https://api.basswallet.com/api/v1/account/withdraw',
         headers=headers,
         data=params,
         )
@@ -78,125 +78,134 @@ description: ''
         ```
 
         ```json JAVA
-        import javax.crypto.Mac;
-        import javax.crypto.spec.SecretKeySpec;
-        import java.nio.charset.StandardCharsets;
-        import java.security.MessageDigest;
-        import java.util.HashMap;
-        import java.util.Map;
-        import java.util.stream.Collectors;
+        import java.io.OutputStream;
         import java.net.HttpURLConnection;
         import java.net.URL;
-        import java.io.OutputStream;
-        import java.io.BufferedReader;
-        import java.io.InputStreamReader;
+        import java.util.Map;
+        import java.util.TreeMap;
+        import java.nio.charset.StandardCharsets;
+        import javax.crypto.Mac;
+        import javax.crypto.spec.SecretKeySpec;
+        import java.util.Base64;
 
-        public class Main {
-        public static void main(String[] args) throws Exception {
-        // 设置身份验证
-        String accessKey = "替换成您的 access_key";
-        String secretKey = "替换成您的 secret_key";
+        public class ApiRequestDemo {
+            public static void main(String[] args) {
+                try {
+                    // 设置身份验证
+                    String accessKey = "替换成您的 access_key";
+                    String secretKey = "替换成您的 secret_key";
 
-        // 设置请求参数
-        Map<String, String> params = new HashMap<>();
-        params.put("tokenName", "USDT");
-        params.put("toAddress", "0x9C903Cc6233ea0E9275452C13efe967a04EBe58b");
-        params.put("chainName", "Ethereum");
-        params.put("amount", "342.892");
+                    // 设置请求参数
+                    Map<String, String> params = new TreeMap<>();
+                    params.put("tokenName", "USDT");
+                    params.put("toAddress", "0x9C903Cc6233ea0E9275452C13efe967a04EBe58b");
+                    params.put("chainName", "Ethereum");
+                    params.put("amount", "500.66");
+                    long timestamp = System.currentTimeMillis();
+                    params.put("timestamp", String.valueOf(timestamp));
 
-        // 参数中添加时间戳
-        long timestamp = System.currentTimeMillis();
-        params.put("timestamp", String.valueOf(timestamp));
+                    // 参数排序并拼接成字符串
+                    StringBuilder payload = new StringBuilder();
+                    for (Map.Entry<String, String> entry : params.entrySet()) {
+                        if (payload.length() > 0) {
+                            payload.append("&");
+                        }
+                        payload.append(entry.getKey()).append("=").append(entry.getValue());
+                    }
 
-        // 参数中加签名
-        String payload = params.entrySet().stream()
-        .map(entry -> entry.getKey() + "=" + entry.getValue())
-        .collect(Collectors.joining("&"));
-        String signature = generateHMAC(secretKey, payload);
-        params.put("signature", signature);
+                    // 生成签名
+                    Mac hmacSha256 = Mac.getInstance("HmacSHA256");
+                    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+                    hmacSha256.init(secretKeySpec);
+                    byte[] hash = hmacSha256.doFinal(payload.toString().getBytes(StandardCharsets.UTF_8));
+                    String signature = Base64.getEncoder().encodeToString(hash);
 
-        // 发送请求
-        String response = sendPostRequest("https://api.basswallet.io/api/v1/account/withdraw", accessKey, params);
-        System.out.println(response);
-    }
+                    // 发送请求
+                    URL url = new URL("https://api.basswallet.com/api/v1/account/withdraw");
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("POST");
+                    connection.setRequestProperty("API-Access-Key", accessKey);
+                    connection.setRequestProperty("Signature", signature);
+                    connection.setDoOutput(true);
 
-        private static String generateHMAC(String key, String data) throws Exception {
-        Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
-        SecretKeySpec secret_key = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
-        sha256_HMAC.init(secret_key);
+                    // 写入请求参数
+                    StringBuilder postData = new StringBuilder();
+                    for (Map.Entry<String, String> entry : params.entrySet()) {
+                        if (postData.length() > 0) {
+                            postData.append("&");
+                        }
+                        postData.append(entry.getKey()).append("=").append(entry.getValue());
+                    }
+                    byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);
+                    OutputStream os = connection.getOutputStream();
+                    os.write(postDataBytes);
+                    os.flush();
+                    os.close();
 
-        byte[] hash = sha256_HMAC.doFinal(data.getBytes(StandardCharsets.UTF_8));
-        StringBuilder result = new StringBuilder();
-        for (byte b : hash) {
-        result.append(String.format("%02x", b));
-    }
-        return result.toString();
-    }
+                    // 获取响应
+                    int responseCode = connection.getResponseCode();
+                    if (responseCode == 200) {
+                        java.io.InputStream inputStream = connection.getInputStream();
+                        java.util.Scanner s = new java.util.Scanner(inputStream).useDelimiter("\\A");
+                        String response = s.hasNext() ? s.next() : "";
+                        System.out.println(response);
+                        inputStream.close();
+                    } else {
+                        System.out.println("Error: " + responseCode);
+                    }
+                    connection.disconnect();
 
-        private static String sendPostRequest(String requestUrl, String accessKey, Map<String, String> params) throws Exception {
-        URL url = new URL(requestUrl);
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("POST");
-        con.setRequestProperty("X-BS-APIKEY", accessKey);
-        con.setDoOutput(true);
-
-        String postData = params.entrySet().stream()
-        .map(entry -> entry.getKey() + "=" + entry.getValue())
-        .collect(Collectors.joining("&"));
-
-        try (OutputStream os = con.getOutputStream()) {
-        os.write(postData.getBytes(StandardCharsets.UTF_8));
-    }
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuilder content = new StringBuilder();
-        while ((inputLine = in.readLine()) != null) {
-        content.append(inputLine);
-    }
-
-        in.close();
-        con.disconnect();
-        return content.toString();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         ```
 
-```php PHP
+        ```php PHP
         <?php
-// 设置身份验证：
-        $accessKey = '替换成您的 access_key';
-        $secretKey = '替换成您的 secret_key';
 
-// 设置请求参数：
+        // 设置身份验证
+        $accessKey = "替换成您的 access_key";
+        $secretKey = "替换成您的 secret_key";
+
+        // 设置请求参数
         $params = [
-        'tokenName' => 'USDT',
-        'toAddress' => '0x9C903Cc6233ea0E9275452C13efe967a04EBe58b',
-        'chainName' => 'Ethereum',
-        'amount' => '342.892',
+            "tokenName" => "USDT",
+            "toAddress" => "0x9C903Cc6233ea0E9275452C13efe967a04EBe58b",
+            "chainName" => "Ethereum",
+            "amount" => "500.66",
+            "timestamp" => round(microtime(true) * 1000)
         ];
 
-// 参数中添加时间戳：
-        $timestamp = round(microtime(true) * 1000); // 以毫秒为单位的 UNIX 时间戳
-        $params['timestamp'] = $timestamp;
-
-// 参数中加签名：
+        // 参数中加签名
+        ksort($params);
         $payload = http_build_query($params);
         $signature = hash_hmac('sha256', $payload, $secretKey);
-        $params['signature'] = $signature;
 
-// 发送请求：
-        $ch = curl_init('https://api.basswallet.io/api/v1/account/withdraw');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // 发送请求
+        $headers = [
+            "API-Access-Key: $accessKey",
+            "Signature: $signature"
+        ];
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://api.basswallet.com/api/v1/account/withdraw");
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'X-BS-APIKEY: ' . $accessKey,
-        ]);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        echo $response;
-        ?>
+        // 输出结果
+        if ($httpCode === 200) {
+            echo $response;
+        } else {
+            echo "Error: HTTP $httpCode\n$response";
+        }
         ```
 
         </CodeGroup>

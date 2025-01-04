@@ -28,12 +28,12 @@ openapi: 'GET /'
 | **status**       | `String` | 是  | 订单状态，具体状态请参见“枚举定义”部分的说明。       |
 | **businessId**   | `String` | 否  | 商户自定义的业务 ID。               |
 | **tag**          | `String` | 否  | 订单备注信息。                    |
-| **txId**         | `String` | 否  | 链上交易哈希值。                   |
+| **txHash**         | `String` | 否  | 链上交易哈希值。                   |
 | **blockHigh**    | `String` | 否  | 区块高度。                      |
 | **networkFee**   | `String` | 是  | 收取的网络手续费。                      |
 | **platformFee**  | `String` | 是  | 收取的平台佣金。                       |
-| **createdTime**   | `String` | 是  | 订单创建时间（UTC）。                   |
-| **completeTime** | `String` | 否  | 订单完成时间（UTC）。                |
+| **createdTime**   | `Long` | 是  | 订单创建时间（UTC）。                   |
+| **completeTime** | `Long` | 否  | 订单完成时间（UTC）。                |
 
 ### 响应示例
 
