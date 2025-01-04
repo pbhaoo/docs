@@ -9,7 +9,7 @@ openapi: 'POST /'
 
 <Tip>
     创建付款订单分为固定金额和不固定金额，当amount有传值时，为固定金额，否则为不固定金额，即不限定用户的付款金额，
-    你可以根据业务特性决定使用哪种类型。
+    你可以根据业务特性决定使用哪种。
 </Tip>
 
 ### 请求参数
@@ -30,24 +30,21 @@ openapi: 'POST /'
 
 ### 响应参数
 
-| 参数              | 类型       | 必须 | 描述          |
-|-----------------|----------|----|-------------|
-| **createdDate** | `long`   | 是  | 创建时间（UTC）。  |
-| **expiryDate**  | `long`   | 是  | 过期时间（UTC）   |
-| **redirectUrl** | `string` | 是  | 重定向的支付页面。   |
-| **status**      | `string` | 是  | 订单状态。       |
-| **id**          | `string` | 是  | 平台定义的订单ID。  |
-| **amount**      | `Double` | 否  | 商户定义的收款数量。  |
-
-
-
-| **tokenName**   | `string` | 是  | 商户定义的收款货币。  |
-| **chainName**   | `string` | 是  | 链名。         |
-| **chainId**     | `Double` | 是  | 链 ID。       |
-| **address**     | `string` | 是  | 收款地址。       |
-| **businessId**  | `string` | 否  | 商户自定义的业务ID。 |
-| **returnUrl**   | `string` | 否  | 商户定义的返回页面。  |
-| **displayInfo** | `string` | 否  | 商户自定义的显示信息。 |
+| 参数              | 类型       | 必须 | 描述            |
+|-----------------|----------|----|---------------|
+| **redirectUrl** | `String` | 是  | 重定向的支付页面。     |
+| **status**      | `String` | 是  | 订单状态。         |
+| **id**          | `String` | 是  | 平台定义的订单ID。    |
+| **amount**      | `String` | 否  | 有设定支付金额时，才有此值 |
+| **minAmount**   | `String` | 否  | 不固定金额时，才有此值   |
+| **tokenName**   | `String` | 是  | 支付货币    |
+| **chainName**   | `String` | 是  | 链名           |
+| **address**     | `String` | 是  | 收款地址。         |
+| **businessId**  | `String` | 否  | 商户自定义的业务ID。   |
+| **returnUrl**   | `String` | 否  | 商户定义的返回页面。    |
+| **displayInfo** | `String` | 否  | 商户自定义的显示信息。   |
+| **createdDate** | `Long`   | 是  | 创建时间（UTC）     |
+| **expiryDate**  | `Long`   | 是  | 过期时间（UTC）     |
 
 ### 响应示例
 
