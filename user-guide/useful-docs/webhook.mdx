@@ -28,7 +28,7 @@ flowchart LR
 </Tip>
 ## 充值回调
 当有资产向商户生成的区块链地址进行充值时，平台的监听程序将第一时间回调通知商户，此时订单状态为`WaitingConfirmation`,
-当交易达到区块确认数后，将再次回调通知商户，此时订单状态为`Success`或`Fail`，订单完成。
+当交易达到区块确认数后，将再次回调通知商户，此时订单状态为`Success`或`Failed`，订单完成。
 
 ```mermaid
 flowchart LR
@@ -63,7 +63,7 @@ flowchart LR
 
 当充值第一次回调时，此时订单状态为`WaitingConfirmation`,此时可上账对应的金额，但此时为冻结状态，用户不可向外部提现。
 
-当充值第二次回调时，此时订单状态为`Success`或`Fail`,如果为`Success`，解冻对应的金额,成功上账，如果为`Fail`，则解冻+取消入账。
+当充值第二次回调时，此时订单状态为`Success`或`Failed`,如果为`Success`，解冻对应的金额,成功上账，如果为`Failed`，则解冻+取消入账。
 
 
 ### 4、如何保证回调的安全性？
