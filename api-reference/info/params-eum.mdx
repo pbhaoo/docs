@@ -8,21 +8,21 @@ description: '接口使用到的枚举定义'
 
 | 值                        | 说明             |
 |--------------------------|----------------|
-| **AwaitingReview**       | 待审批            |
-| **ReviewDeclined**       | 驳回             |
+| **AwaitingApproval**     | 待审批            |
+| **Rejected**             | 拒绝             |
 | **Processing**           | 处理中            |
 | **AwaitingPayment**      | 待支付            |
 | **AwaitingConfirmation** | 待确认(需一定区块数的确认) |
 | **Success**              | 成功             |
 | **Failed**               | 失败             |
 | **Underpaid**            | 金额不足           |
-| **Expired**              | 订单过期           |
-| **Cancelled**            | 订单取消           |
+| **Expired**              | 过期             |
+| **Cancelled**            | 被取消            |
 
 ### 回调类型(webhookType)
 
-| 值        | 说明      |
-|----------|---------|
+| 值            | 说明        |
+|--------------|-----------|
 | **Deposit**  | 地址充值订单的回调 |
 | **Payment**  | 创建付款订单的回调 |
-| **Withdraw** | 提现订单的回调 |
+| **Withdraw** | 提现订单的回调   |
