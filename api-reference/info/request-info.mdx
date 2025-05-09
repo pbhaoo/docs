@@ -11,8 +11,11 @@ description: ''
 * **POST 请求**：所有参数必须在`request body` 中以`form-data`格式发送。
 
 ## 接入 URL
+生产环境：
+`https://api.basswallet.com/api/`
 
-**https://api-beta.basswallet.io/api/**
+Beta环境：
+`https://api-beta.basswallet.io/api/`
 
 
 ## 接口鉴权
@@ -53,8 +56,8 @@ tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C
 ### CURL调用
 ```bash
 curl
--H "X-BS-APIKEY: 1bn3sMGefeVVz74o52VjRA7Rr0gzLgv7XEodfikwZ9gw5ROqeZor8kQPUSDr3WXa"
+-H "API-Access-Key: 1bn3sMGefeVVz74o52VjRA7Rr0gzLgv7XEodfikwZ9gw5ROqeZor8kQPUSDr3WXa"
 -H "Signature: 966174f21ae551a832a4830231e3d3dacf4ad326dc437d391ec525dd4fdaab44"
--X POST 'https://api.baaswallet.io/baaswallet/api/v1/account/withdraw'
+-X POST 'https://api.basswallet.com/api/v1/account/withdraw'
 -d 'tokenName=USDT&amount=500&chainName=Ethereum&toAddress=0x9C903Cc6233ea0E9275452C13efe967a04EBe58b&timestamp=1724985575933'
 ```

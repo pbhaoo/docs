@@ -1,0 +1,42 @@
+---
+title: '发起提现(回调)'
+description: '由平台主动向商户请求，实时通知提现订单的信息变更。'
+openapi: 'POST /'
+---
+
+### 接口地址  
+**POST** `商户配置的回调地址`
+
+<Tip>
+
+每笔提现订单，会回调两次，点击 [这里](/user-guide/useful-docs/webhook) 了解详细的回调规则。
+
+</Tip>
+
+### 请求参数
+
+| 参数           | 数据类型  | 必须 | 描述                                                                 |
+|----------------|-----------|----------|----------------------------------------------------------------------|
+| **webhookType** | `String`  | 是       | 回调类型，这里为 `Withdraw`。                                       |
+| **id**          | `String`  | 是       | 订单 ID。                                            |
+| **status**      | `String`  | 是       | 订单状态，见订单枚举。               |
+| **txHash**        | `String`  | 是       | 链上交易哈希                                |
+| **networkFee**  | `String`  | 是       | 网络手续费                                |
+| **platformFee** | `String`  | 是       | 平台佣金，提现过程中收取的佣金                                      |
+| **businessId**  | `String`  | 否       | 商户自定义的业务 ID，如有。                               |
+| **timestamp**     | `Long`  | 是    | UNIX 时间戳（毫秒）         |
+
+### 请求示例
+
+```json
+{
+    "businessId": "9273491234213434",
+    "id": "603273294627606528",
+    "networkFee": "1",
+    "platformFee": "0.25",
+    "status": "Success",
+    "txHash": "76dfd95035a6b262ffb7ab8d255177ee05327583efbcbdf4400c52eba1de1abb",
+    "webhookType": "Withdraw",
+    "timestamp": 1729475874520
+}
+```

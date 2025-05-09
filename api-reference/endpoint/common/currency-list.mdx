@@ -1,0 +1,48 @@
+---
+title: '支持的法定货币'
+description: '获取平台支持的法定货币列表'
+openapi: 'GET /'
+---
+
+### 接口地址  
+**GET** `/v1/common/supportedCurrencies`
+
+### 请求参数
+
+| 参数       | 类型 | 必须 | 描述               |
+|------------|----------|----------|--------------------|
+| **timestamp**  | `Long`     | 是     | unix时间戳(毫秒)   |
+
+### 响应参数
+
+| 参数       | 类型 | 必须 | 描述         |
+|------------|----------|----------|--------------|
+| **currency**  | `String`   | 是     | 法定货币简称      |
+| **fullName**       | `String`  | 是     | 全称     |
+| **symbol**     | `String`   | 是     | 货币符号     |
+
+### 响应示例
+
+```json
+{
+    "code": 200,
+    "msg": "success",
+    "timestamp": "1725853044217",
+    "data": [       
+        {
+            "currency": "USD",
+            "fullName": "United States Dollar",
+            "symbol": "$"
+        },
+        {
+            "currency": "JPY",
+            "fullName": "Japanese Yen",
+            "symbol": "¥"
+        },
+      {
+            "currency": "EUR",
+            "fullName": "Euro",
+            "symbol": "€"
+        }
+    ]
+}

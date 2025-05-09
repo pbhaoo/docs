@@ -1,0 +1,61 @@
+---
+title: '查询订单(提现)'
+description: '通过ID主动过查询提现订单的详细信息'
+openapi: 'GET /'
+---
+
+### 接口地址
+**GET** `/v1/account/order/query`
+
+### 请求参数
+
+| 参数             | 类型       | 必填 | 描述                                        |
+|----------------|----------|----|-------------------------------------------|
+| **id**         | `String` | 否  | 平台返回的订单 ID。                               |
+| **businessId** | `String` | 否  | 商户自定义的业务 ID。`id` 或 `businessId` 必须传其中一个。 |
+| **timestamp**  | `Long`   | 是  | UNIX 时间戳（毫秒）。                             |
+
+
+### 响应参数
+
+| 参数               | 类型       | 必须 | 描述                             |
+|------------------|----------|----|--------------------------------|
+| **id**           | `String` | 是  | 订单 ID。                         |
+| **tokenName**    | `String` | 是  | 币种名称。                          |
+| **chainName**    | `String` | 是  | 区块链网络名称，例如 `Ethereum`、`Bsc` 等。 |
+| **toAddress**    | `String` | 是  | 接收方地址。                         |
+| **amount**       | `String` | 是  | 提币数量。                          |
+| **status**       | `String` | 是  | 订单状态，具体状态请参见“枚举定义”部分的说明。       |
+| **businessId**   | `String` | 否  | 商户自定义的业务 ID。               |
+| **tag**          | `String` | 否  | 订单备注信息。                    |
+| **txHash**         | `String` | 否  | 链上交易哈希值。                   |
+| **blockHigh**    | `String` | 否  | 区块高度。                      |
+| **networkFee**   | `String` | 是  | 收取的网络手续费。                      |
+| **platformFee**  | `String` | 是  | 收取的平台佣金。                       |
+| **createdTime**   | `Long` | 是  | 订单创建时间（UTC）。                   |
+| **completeTime** | `Long` | 否  | 订单完成时间（UTC）。                |
+
+### 响应示例
+
+```json
+{
+    "code": 200,
+    "msg": "success",
+    "timestamp": "1725674596300",
+    "data": {
+        "id": "587096537146986496",
+        "chainName": "Tron",
+        "tokenName": "USDT",
+        "toAddress": "TKjLDbk7LC9NXzRBCYahKa8pzMHRfahJjn",
+        "amount": "200.15",
+        "status": "Success",
+        "businessId": "",
+        "tag": "",
+        "txId": "56a925bb3a90badb770f227e34a61737327e0eded81190e048c23ab6efa8ec9b",
+        "blockHigh": 50025541,
+        "networkFee": "2",
+        "platformFee": "0.15",
+        "createdTime": 1729475874520,
+        "completeTime": 1729475874520
+    }
+}

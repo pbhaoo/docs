@@ -4,21 +4,22 @@ description: ''
 ---
 
 
-| 代码 | 解释                   | 错误说明                           |
-|--------|------------------------|------------------------------------|
-| 400    | PARAM_ERROR            | 参数错误                           |
-| 400    | ADDRESS_UNAVAILABLE    | 钱包地址不可用                     |
-| 400    | TIME_OUT               | 时间戳无效                         |
-| 400    | CALLBACK_URL_ERROR     | 回调地址错误                       |
-| 400    | INSIDE_ADDRESS         | 接收方为平台内部地址       |
-| 400    | AMOUNT_PRECISION_TOO_SMALL | 提现数量的小数位不符合设定 |
-| 401    | UNAUTHORIZED_ACCESS    | AK不存在                           |
-| 401    | SIGN_ERROR             | 签名错误                           |
-| 401    | IP_NOT_IN_WHITELIST    | IP地址不在白名单中                 |
-| 403    | NO_AUTH                | API key无权限                       |
-| 403    | BUSINESS_ID_EXISTENCE  | businessId重复                     |
-| 403    | TRADE_ERROR            | 交易错误                           |
-| 403    | NOT_SUFFICIENT_FUNDS   | 账户余额不足                           |
-| 429    | FREQUENCY_LIMITED      | 请求频率超限                           |
-| 450    | NON_WITHDRAWAL         | 无法提现                           |
-| 500    | SYSTEM_ERROR           | 系统异常，请稍后重试               |
+| 代码  | 解释                         | 错误说明          |
+|-----|----------------------------|---------------|
+| 400 | **PARAM_ERROR**                | 请求参数错误        |
+| 400 | **ADDRESS_UNAVAILABLE**        | 钱包地址无效或不可用    |
+| 400 | **TIME_OUT**                   | 时间戳无效或已过期     |
+| 400 | **CALLBACK_URL_ERROR**         | 回调地址错误        |
+| 400 | **INSIDE_ADDRESS**             | 接收方为平台内部地址    |
+| 400 | **AMOUNT_PRECISION_TOO_SMALL** | 金额小数位不合法 |
+| 401 | **UNAUTHORIZED_ACCESS**        | API Key 无效    |
+| 401 | **SIGN_ERROR**                | 签名错误          |
+| 401 | **IP_NOT_IN_WHITELIST**        | 请求IP不在白名单中    |
+| 403 | **NO_AUTH**                    | API key无权限    |
+| 403 | **BUSINESS_ID_EXISTENCE**      | businessId重复  |
+| 403 | **TRADE_ERROR**                | 交易错误          |
+| 403 | **NOT_SUFFICIENT_FUNDS**      | 账户余额不足        |
+| 429 | **FREQUENCY_LIMITED**          | 请求频率超限        |
+| 450 | **SUSPENDED_WITHDRAWAL**       | 暂停提现          |
+| 450 | **SUSPENDED_DEPOSIT**          | 暂停充值          |
+| 500 | **SYSTEM_ERROR**               | 系统内部错误，请稍后重试  |

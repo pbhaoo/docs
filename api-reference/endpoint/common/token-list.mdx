@@ -1,0 +1,114 @@
+---
+title: '支持的加密货币'
+description: '获取平台支持的加密货币列表'
+openapi: 'GET /'
+---
+
+### 接口地址
+**GET** `/v1/common/tokens`
+
+### 请求参数
+
+| 参数            | 类型       | 必填 | 描述                  |
+|---------------|----------|------|---------------------|
+| **tokenName** | `String` | 否    | 币种名称，不传时默认返回所有币种信息。 |
+
+<Tip>
+    同一个代币，可能在多条链上发行，从参数`chainList`中可获取到该币在哪些链发行，以及其对应的信息。有几个
+    信息是值得注意：提现数量的小数位限制/最小提现数量/最小充值数量等，详见下方说明。
+</Tip>
+
+### 响应参数
+
+| 参数                      | 类型       | 必须 | 描述                                        |
+|-------------------------|----------|------|-------------------------------------------|
+| **tokenName**           | `String` | 是    | 币种名称                                     |
+| **fullName**            | `String` | 是    | 币种全称。                                    |
+| **\<chainList\>**         | `Object` | 是    | 币种支持的提现/充值链的列表，一个代币可能在多个链上发行，本质上属于同一资产。   |
+| **chainId**             | `Integer`    | 是    | 链的唯一 ID。                                  |
+| **chainName**           | `String` | 是    | 链的唯一名称。                                   |
+| **tokenId**             | `String` | 是    | 币种的唯一 ID。                                 |
+| **contractId**          | `String` | 否    | 币种的合约 ID，仅智能合约代币（如 USDT）存在此值。             |
+| **tokenType**           | `String` | 是    | 币种类型，链主币时值为 `Base`，例如 Ethereum 链的主币为 ETH。 |
+| **decimals**            | `Integer`    | 是    | 币种的精度。                                    |
+| **displayDecimal**      | `Integer`    | 是    | 币种金额显示的最长小数位，提现金额受此限制。                    |
+| **blockConfirmNum**     | `Integer`    | 是    | 安全上账所需的区块确认数，达到此值将解冻金额。                   |
+| **minDepositAmount**    | `String` | 是    | 最小充值数量，小于此值的充值将不会上账。                      |
+| **minWithdrawAmount**   | `String` | 是    | 最小提现数量，小于此值的金额将不能提现。                      |
+| **fee**                 | `String` | 是    | 提币的网络手续费，可能根据网络情况动态调整。                    |
+| **depositEnable**       | `Bool`   | 是    | 充值功能状态，`True` 表示正常，`False` 表示暂停。          |
+| **sda**                 | `String` | 否    | 暂停充值的公告信息（如有）。                            |
+| **suspendDepositDesc**  | `String` | 否    | 暂停充值的描述信息（如有）。                            |
+| **withdrawEnable**      | `Bool`   | 是    | 提现功能状态，`True` 表示正常，`False` 表示暂停。          |
+| **swa**                 | `String` | 否    | 暂停提现的公告信息（如有）。                            |
+| **suspendWithdrawDesc** | `String` | 否    | 暂停提现的描述信息（如有）。                            |
+
+---
+
+### 响应示例
+
+```json
+{
+    "code": 200,
+    "msg": "success",
+    "timestamp": "1725619438648",
+    "data": [
+        {
+            "tokenName": "USDT",
+            "fullName": "Tether USD",
+            "chainList": [
+                {
+                    "chainId": 102,
+                    "chainName": "Ethereum",
+                    "tokenId": 102003,
+                    "contractId": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+                    "tokenType": "ERC-20",
+                    "decimals": 6,
+                    "displayDecimal": 2,
+                    "blockConfirmNum": 64,
+                    "minDepositAmount": "0.01",
+                    "minWithdrawAmount": "0.01",
+                    "fee": "0.11",
+                    "depositEnable": true,
+                    "withdrawEnable": true
+                },
+                {
+                    "chainId": 103,
+                    "chainName": "Tron",
+                    "tokenId": 103002,
+                    "contractId": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+                    "tokenType": "TRC-20",
+                    "decimals": 6,
+                    "displayDecimal": 2,
+                    "blockConfirmNum": 20,
+                    "minDepositAmount": "0.01",
+                    "minWithdrawAmount": "0.12",
+                    "fee": "0.01",
+                    "depositEnable": true,
+                    "withdrawEnable": true
+                }
+            ]
+        },
+        {
+            "tokenName": "ETH",
+            "fullName": "Ethereum",
+            "chainList": [
+                {
+                    "chainId": 102,
+                    "chainName": "Ethereum",
+                    "tokenId": 102002,
+                    "contractId": "",
+                    "tokenType": "Base",
+                    "decimals": 18,
+                    "displayDecimal": 6,
+                    "blockConfirmNum": 64,
+                    "minDepositAmount": "0.00001",
+                    "minWithdrawAmount": "0.00001",
+                    "fee": "0.00001",
+                    "depositEnable": true,
+                    "withdrawEnable": true
+                }
+            ]
+        },
+    ]
+}

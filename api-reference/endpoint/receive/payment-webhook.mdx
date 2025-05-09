@@ -1,0 +1,62 @@
+---
+title: '创建付款(回调)'
+description: '由平台主动向商户请求，实时通知创建付款订单的更新。'
+openapi: 'POST /'
+---
+
+### 接口地址
+**POST** `商户配置的回调地址`
+
+<Tip>
+    当付款订单用户有支付时，将回调两次。如果用户在订单到期时间内没有支付，将回调一个逾期状态。
+</Tip>
+
+### 请求参数
+
+| 参数               | 数据类型     | 必须 | 描述                 |
+|------------------|----------|----|--------------------|
+| **webhookType**  | `String` | 是  | 回调类型，这里为 `Payment` |
+| **id**           | `String` | 是  | 订单ID               |
+| **status**       | `String` | 是  | 订单状态，见订单枚举         |
+| **chainName**    | `String` | 是  | 链名                 |
+| **tokenName**    | `String` | 是  | 币种名                |
+| **fromAddress**  | `String` | 是  | 发送方地址              |
+| **toAddress**    | `String` | 是  | 接收方地址              |
+| **txHash**       | `String` | 是  | 链上交易哈希             |
+| **amount**       | `String` | 否  | 商户设定的支付金额          |
+| **amountActual** | `String` | 是  | 实际支付的金额            |
+| **amountUSD**    | `String` | 是  | 实际支付的美元计价金额        |
+| **businessId**   | `String` | 否  | 商户自定义的订单ID         |
+| **timestamp**    | `Long`   | 是  | UNIX 时间戳（毫秒）       |
+
+### 请求参数(当订单逾期时)
+
+| 参数              | 数据类型     | 必须 | 描述                 |
+|-----------------|----------|----|--------------------|
+| **webhookType** | `String` | 是  | 回调类型，这里为 `Payment` |
+| **id**          | `String` | 是  | 订单ID               |
+| **businessId**  | `String` | 否  | 商户自定义的订单ID(如果有)    |
+| **status**      | `String` | 是  | 订单状态，这里为`Expired`  |
+| **timestamp**   | `Long`   | 是  | UNIX 时间戳（毫秒）       |
+
+### 请求示例
+
+
+```json
+{
+    "amount": "10.88",
+    "amountActual": "10.88",
+    "amountUSD": "10.11",
+    "blockConfirmNum": 1,
+    "blockHigh": 51259775,
+    "chainName": "Tron",
+    "fromAddress": "TKjLDbk7LC9NXzRBCYahKa8pzMHRfahJjn",
+    "id": "603277493897662464",
+    "status": "WaitingConfirmation",
+    "toAddress": "TTSgF6XEd1TbEH3fPuC4Zypn7UZsxetEcH",
+    "tokenName": "USDT",
+    "txHash": "a43d0157e327da5fe5912e5ff91939a4c142cfa1ebedea0a40b4e118d35425d2",
+    "webhookType": "Payment",
+    "timestamp": 1729476831813
+}
+```
